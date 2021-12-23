@@ -1,3 +1,0 @@
-E:/Dropbox/Code/RPGTextCPP/cmake-build-debug/CMakeFiles/RPGTextCPP.dir
-E:/Dropbox/Code/RPGTextCPP/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/Dropbox/Code/RPGTextCPP/cmake-build-debug/CMakeFiles/rebuild_cache.dir
