@@ -11,6 +11,7 @@
 #define PLAYER_NAME_MAXLENGTH 20
 #define PLAYER_NAME_DEFAULT "NAME_NOT_SET"
 
+// Represents a Player with a name.
 class Player {
 public:
     Player() : Player(PLAYER_NAME_DEFAULT) {}
@@ -21,7 +22,7 @@ public:
     friend std::istream& operator>> (std::istream& in, Player& player);
 
 private:
-    std::string playerName;
+    std::string _playerName;
 };
 
 /*

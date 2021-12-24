@@ -9,15 +9,15 @@ Player::Player(const std::string playerName) {
 }
 
 void Player::setName(const std::string playerName) {
-    this->playerName = playerName;
+    this->_playerName = playerName;
 }
 
 std::string Player::getName() const {
-    return playerName;
+    return _playerName;
 }
 
 std::ostream& operator<< (std::ostream& out, const Player& player) {
-    out << player.playerName;
+    out << player._playerName;
     return out;
 }
 
