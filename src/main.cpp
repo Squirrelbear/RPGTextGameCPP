@@ -1,6 +1,9 @@
 #include <iostream>
+#include "Player.h"
 
 int main() {
-    std::cout << "Hello, World!" << std::endl;
+    Player player = createPlayer();
+
+    std::cout << "Welcome " << player << "!" << std::endl;
     return 0;
 }
