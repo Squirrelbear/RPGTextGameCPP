@@ -5,8 +5,17 @@
 #include <iostream>
 #include "CombatUnit.h"
 
-CombatUnit::CombatUnit() {
+CombatUnit::CombatUnit(const std::string unitName) {
+    setName(unitName);
     _attackTypes.emplace_back();
+}
+
+void CombatUnit::setName(const std::string unitName) {
+    this->_unitName = unitName;
+}
+
+std::string CombatUnit::getName() const {
+    return _unitName;
 }
 
 UnitHealth & CombatUnit::getUnitHealth() {
@@ -26,4 +35,10 @@ UnitAttack CombatUnit::getRandomUnitAttack() const {
 
 size_t CombatUnit::getAttackCount() const {
     return _attackTypes.size();
+}
+
+
+std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit) {
+    out << combatUnit.getName();
+    return out;
 }

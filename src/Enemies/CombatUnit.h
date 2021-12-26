@@ -12,15 +12,20 @@
 
 class CombatUnit {
 public:
-    CombatUnit();
+    CombatUnit(const std::string unitName);
+    std::string getName() const;
+    void setName(const std::string unitName);
     UnitHealth& getUnitHealth();
     UnitAttack getUnitAttack(const size_t attackID) const;
     UnitAttack getRandomUnitAttack() const;
     size_t getAttackCount() const;
 
+    friend std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit);
+
     virtual UnitAttack chooseAttack() = 0;
 
 private:
+    std::string _unitName;
     UnitHealth _unitHealth;
     std::vector<UnitAttack> _attackTypes;
 };
