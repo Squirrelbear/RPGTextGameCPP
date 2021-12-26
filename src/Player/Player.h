@@ -6,13 +6,14 @@
 #define RPGTEXTCPP_PLAYER_H
 
 #include <iostream>
+#include "../Enemies/CombatUnit.h"
 
 #define PLAYER_NAME_MINLENGTH 3
 #define PLAYER_NAME_MAXLENGTH 20
 #define PLAYER_NAME_DEFAULT "NAME_NOT_SET"
 
 // Represents a Player with a name.
-class Player {
+class Player : CombatUnit {
 public:
     Player() : Player(PLAYER_NAME_DEFAULT) {}
     Player(const std::string playerName);
@@ -20,6 +21,8 @@ public:
     void setName(const std::string playerName);
     friend std::ostream& operator<< (std::ostream& out, const Player& player);
     friend std::istream& operator>> (std::istream& in, Player& player);
+
+    UnitAttack chooseAttack();
 
 private:
     std::string _playerName;

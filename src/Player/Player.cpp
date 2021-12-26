@@ -29,6 +29,11 @@ std::istream& operator>> (std::istream& in, Player& player) {
     return in;
 }
 
+UnitAttack Player::chooseAttack() {
+    // TODO
+    return UnitAttack();
+}
+
 Player createPlayer() {
     Player player;
     do {

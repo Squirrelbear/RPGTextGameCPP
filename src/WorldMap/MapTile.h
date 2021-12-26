@@ -12,6 +12,12 @@ class MapTile {
 public:
     // Defaults the map tile to a . empty character that can be walked
     MapTile() : MapTile('.', true) {}
+    /*
+     * Creates a MapTile with no overlay.
+     *
+     * @param tileChar The base tile to be shown when output.
+     * @param isWalkable Setting this to true will allow players and AI to enter the tile.
+     */
     MapTile(const char tileChar, const bool isWalkable);
 
     // Set the base tile type
@@ -39,9 +45,13 @@ public:
     friend std::ostream& operator<< (std::ostream& out, const MapTile& tile);
 
 private:
+    // The base tile that will be hidden by _overlayChar if _showOverlay is true.
     char _tileChar;
+    // When false, this tile can't be navigated by players or AI.
     bool _isWalkable;
+    // The character that should be shown instead of _tileChar when _showOverlay is true.
     char _overlayChar;
+    // When true, the _overlayChar is shown instead of the _tileChar.
     bool _showOverlay;
 };
 
