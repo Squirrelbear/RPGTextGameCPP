@@ -9,6 +9,8 @@
 #include <vector>
 #include "MapTile.h"
 
+//#define WORLD_MAP_SHOW_NUMBERS
+
 // Represents a map with a 2D grid of MapTile objects.
 class WorldMap {
 public:

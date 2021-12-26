@@ -7,6 +7,7 @@
 MapTile::MapTile(const char tileChar, const bool isWalkable) {
     setTileChar(tileChar);
     setIsWalkable(isWalkable);
+    _showOverlay = false;
 }
 
 void MapTile::setTileChar(const char tileChar) {
@@ -25,8 +26,25 @@ bool MapTile::isWalkable() const {
     return _isWalkable;
 }
 
+void MapTile::setOverlay(const char overlayChar) {
+    _overlayChar = overlayChar;
+    _showOverlay = true;
+}
+
+void MapTile::hideOverlayChar() {
+    _showOverlay = false;
+}
+
+bool MapTile::hasOverlay() const {
+    return _showOverlay;
+}
+
+char MapTile::getOverlayChar() const {
+    return _overlayChar;
+}
+
 std::ostream& operator<< (std::ostream& out, const MapTile& tile) {
-    out << tile._tileChar;
+    out << (tile._showOverlay ? tile._overlayChar : tile._tileChar);
 
     return out;
 }
