@@ -3,4 +3,4 @@ project(RPGTextCPP)
 
 set(CMAKE_CXX_STANDARD 20)
 
-add_executable(RPGTextCPP src/main.cpp src/Player/Player.cpp src/Player/Player.h src/WorldMap/WorldMap.cpp src/WorldMap/WorldMap.h src/WorldMap/MapTile.cpp src/WorldMap/MapTile.h src/Enemies/Encounter.cpp src/Enemies/Encounter.h src/Enemies/Enemy.cpp src/Enemies/Enemy.h src/Enemies/UnitHealth.cpp src/Enemies/UnitHealth.h src/Enemies/UnitAttack.cpp src/Enemies/UnitAttack.h src/Enemies/CombatUnit.cpp src/Enemies/CombatUnit.h)
+add_executable(RPGTextCPP src/main.cpp src/Player/Player.cpp src/Player/Player.h src/WorldMap/WorldMap.cpp src/WorldMap/WorldMap.h src/WorldMap/MapTile.cpp src/WorldMap/MapTile.h src/Enemies/Encounter.cpp src/Enemies/Encounter.h src/Enemies/Enemy.cpp src/Enemies/Enemy.h src/Enemies/UnitHealth.cpp src/Enemies/UnitHealth.h src/Enemies/UnitAttack.cpp src/Enemies/UnitAttack.h src/Enemies/CombatUnit.cpp src/Enemies/CombatUnit.h src/Game.cpp src/Game.h)

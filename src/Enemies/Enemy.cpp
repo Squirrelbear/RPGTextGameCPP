@@ -5,5 +5,5 @@
 #include "Enemy.h"
 
 UnitAttack Enemy::chooseAttack() {
-    return UnitAttack();
+    return getRandomUnitAttack();
 }

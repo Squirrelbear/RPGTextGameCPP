@@ -12,7 +12,7 @@
 
 class CombatUnit {
 public:
-    CombatUnit(const std::string unitName);
+    CombatUnit(const std::string unitName, const char mapOverlayChar, const size_t initialMaxHealth);
     std::string getName() const;
     void setName(const std::string unitName);
     UnitHealth& getUnitHealth();
@@ -25,6 +25,7 @@ public:
     virtual UnitAttack chooseAttack() = 0;
 
 private:
+    char _mapOverlayChar;
     std::string _unitName;
     UnitHealth _unitHealth;
     std::vector<UnitAttack> _attackTypes;

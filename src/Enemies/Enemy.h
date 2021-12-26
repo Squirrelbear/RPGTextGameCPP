@@ -7,12 +7,11 @@
 
 #include "CombatUnit.h"
 
-class Enemy : CombatUnit {
+class Enemy : public CombatUnit {
 public:
+    Enemy(const std::string enemyName, const char mapOverlayChar, const size_t initialMaxHealth)
+                        : CombatUnit(enemyName, mapOverlayChar, initialMaxHealth) {}
     UnitAttack chooseAttack();
-
-private:
-    std::string _enemyName;
 };
 
 

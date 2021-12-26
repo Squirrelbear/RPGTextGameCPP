@@ -16,7 +16,7 @@
 class Player : public CombatUnit {
 public:
     Player() : Player(PLAYER_NAME_DEFAULT) {}
-    Player(const std::string playerName) : CombatUnit(playerName) {}
+    Player(const std::string playerName) : CombatUnit(playerName, '@', 100) {}
     /*
      * Validates if the provided Player object has a valid name.
      * For a name to be valid it must have a length between

@@ -11,9 +11,10 @@ int main() {
     WorldMap worldMap("map.txt");
 
     std::cout << std::endl << worldMap << std::endl;
-    std::cout << "Welcome " << player << "! You are represented by the @ symbol." << std::endl;
+    std::cout << "Welcome " << player.getName() << "! You are represented by the @ symbol." << std::endl;
     std::cout << "Where would you like to go? (up/down/left/right): ";
 
+    std::cout << std::endl << std::endl << player << std::endl;
 
     return 0;
 }

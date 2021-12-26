@@ -5,8 +5,11 @@
 #include <iostream>
 #include "CombatUnit.h"
 
-CombatUnit::CombatUnit(const std::string unitName) {
+CombatUnit::CombatUnit(const std::string unitName, const char mapOverlayChar, const size_t initialMaxHealth)
+    : _unitHealth(initialMaxHealth)
+{
     setName(unitName);
+    _mapOverlayChar = mapOverlayChar;
     _attackTypes.emplace_back();
 }
 
@@ -39,6 +42,6 @@ size_t CombatUnit::getAttackCount() const {
 
 
 std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit) {
-    out << combatUnit.getName();
+    out << combatUnit.getName() << " has " << combatUnit._unitHealth;
     return out;
 }
