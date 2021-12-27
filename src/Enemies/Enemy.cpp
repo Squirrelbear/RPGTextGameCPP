@@ -4,6 +4,6 @@
 
 #include "Enemy.h"
 
-UnitAttack Enemy::chooseAttack() {
+std::optional<UnitAttack> Enemy::chooseAttack() {
     return getRandomUnitAttack();
 }

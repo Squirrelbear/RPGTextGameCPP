@@ -36,7 +36,7 @@ std::istream& operator>> (std::istream& in, Player& player) {
     return in;
 }
 
-UnitAttack Player::chooseAttack() {
+std::optional<UnitAttack> Player::chooseAttack() {
     // TODO
     return UnitAttack();
 }

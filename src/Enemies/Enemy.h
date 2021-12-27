@@ -11,7 +11,7 @@ class Enemy : public CombatUnit {
 public:
     Enemy(const std::string enemyName, const char mapOverlayChar, const size_t initialMaxHealth)
                         : CombatUnit(enemyName, mapOverlayChar, initialMaxHealth) {}
-    UnitAttack chooseAttack();
+    std::optional<UnitAttack> chooseAttack();
 };
 
 

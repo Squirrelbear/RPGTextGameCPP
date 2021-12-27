@@ -9,14 +9,15 @@
 
 class UnitAttack {
 public:
+    size_t getManaCost() const;
 
 private:
-    int baseDamageMin;
-    int baseDamageMax;
-    float criticalChance;
-    float criticalDamageMultiplier;
-    std::string attackName;
-    int manaCost;
+    int _baseDamageMin;
+    int _baseDamageMax;
+    float _criticalChance;
+    float _criticalDamageMultiplier;
+    std::string _attackName;
+    size_t _manaCost;
 };
 
 #endif //RPGTEXTCPP_UNITATTACK_H

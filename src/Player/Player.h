@@ -33,7 +33,7 @@ public:
     friend std::istream& operator>> (std::istream& in, Player& player);
 
 
-    UnitAttack chooseAttack();
+    std::optional<UnitAttack> chooseAttack();
 };
 
 /*
