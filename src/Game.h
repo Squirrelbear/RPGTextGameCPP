@@ -13,14 +13,19 @@
 
 class Game {
 public:
-    Game(const std::string mapFileName);
+    Game(const std::string mapFileName, const Player& player);
     void gameLoop();
-    bool isGameOver() const;
 
 private:
     std::vector<Encounter> _encounters;
     Player _player;
     WorldMap _worldMap;
+
+    bool isGameOver() const;
+    void navigateMap();
+    void processEncounter(Encounter& encounter);
+    void showGameOverMessage() const;
+    void showGameWonMessage() const;
 };
 
 

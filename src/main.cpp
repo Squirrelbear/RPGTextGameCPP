@@ -1,20 +1,23 @@
 #include <iostream>
-#include <time.h>
+#include <ctime>
 #include "Player/Player.h"
-#include "WorldMap/WorldMap.h"
-#include "Enemies/Enemy.h"
+#include "Game.h"
 
 int main() {
     srand(time(NULL));
 
+    std::string playAgainInput;
     Player player = createPlayer();
-    WorldMap worldMap("map.txt");
 
-    std::cout << std::endl << worldMap << std::endl;
-    std::cout << "Welcome " << player.getName() << "! You are represented by the @ symbol." << std::endl;
-    std::cout << "Where would you like to go? (up/down/left/right): ";
+    do {
+        Game game("TODO", player);
+        game.gameLoop();
 
-    std::cout << std::endl << std::endl << player << std::endl;
+        std::cout << "Play Again (Y/N): ";
+        std::cin >> playAgainInput;
+    } while(playAgainInput == "Y");
+
+    std::cout << std::endl << std::endl << "Thank you for playing! See you next time!" << std::endl;
 
     return 0;
 }

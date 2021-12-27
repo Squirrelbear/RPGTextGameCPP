@@ -43,7 +43,8 @@ size_t CombatUnit::getAttackCount() const {
 
 
 std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit) {
-    out << combatUnit.getName() << " has " << combatUnit._unitHealth;
+    out << combatUnit.getName() << " has " << combatUnit._unitHealth << " HP and ";
+    out << combatUnit._unitMana << " Mana.";
     return out;
 }
 
