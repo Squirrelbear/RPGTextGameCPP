@@ -56,3 +56,11 @@ void WorldMap::setOverlayAt(const MapPosition &mapPosition, const char overlayCh
 char WorldMap::getOverlayAt(const MapPosition &mapPosition) {
     return _map.at(mapPosition.y).at(mapPosition.x).getOverlayChar();
 }
+
+MapPosition WorldMap::getMaxPosition() const {
+    if(_map.empty() || _map.at(0).empty()) {
+        return {0,0};
+    }
+
+    return {(int)_map.at(0).size(), (int)_map.size()};
+}

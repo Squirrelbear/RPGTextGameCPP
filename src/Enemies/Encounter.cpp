@@ -6,13 +6,15 @@
 
 Encounter::Encounter(const MapPosition &mapPosition) {
     _mapPosition = mapPosition;
+    _enemyList.push_back(Enemy("Test", '#', 100));
 }
 
 void Encounter::playEncounterTurn(Player &player) {
-    std::optional<UnitAttack> playerAttack = player.chooseAttack();
+    std::cout << "PLAYING ENCOUNTER" << std::endl;
+    /*std::optional<UnitAttack> playerAttack = player.chooseAttack();
     if(playerAttack.has_value()) {
         applyAttack(playerAttack.value(), player, _enemyList.at(0));
-    }
+    }*/
 }
 
 bool Encounter::isWon() const {

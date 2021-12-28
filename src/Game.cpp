@@ -5,23 +5,45 @@
 #include <algorithm>
 #include "Game.h"
 
-Game::Game(const std::string mapFileName, const Player& player)
+Game::Game(const std::string& mapFileName, const Player& player)
     : _worldMap(mapFileName), _player(player) {
     _worldMap.setOverlayAt(_player.getPlayerPosition(), _player.getMapOverlayChar());
+    spawnEncounters(5, _worldMap.getMaxPosition());
     std::cout << "Welcome " << _player.getName() << "! You are represented by the @ symbol." << std::endl;
 }
 
 void Game::gameLoop() {
     do {
         navigateMap();
-        // TODO check which position
-        //processEncounter(_encounters.at(0));
+        int encounterID = getEncounterAt(_player.getPlayerPosition());
+        if(encounterID == -1) {
+            std::cout << "ERROR!!! This should never happen..." << std::endl;
+            continue;
+        }
+        processEncounter(_encounters.at(encounterID));
+        if(!_player.getUnitHealth().isDead()) {
+            _encounters.erase(_encounters.begin()+encounterID);
+        }
     } while(!isGameOver() && !_player.getUnitHealth().isDead());
 
     if(isGameOver()) {
         showGameOverMessage();
     } else {
         showGameWonMessage();
+    }
+}
+
+void Game::spawnEncounters(const size_t count, const MapPosition& maxPosition) {
+    for(int i = 0; i < count; i++) {
+        MapPosition encounterPosition = MapPosition::getRandomPosition(maxPosition);
+        while(!_worldMap.canMoveToPosition(encounterPosition)
+                || getEncounterAt(encounterPosition) != -1
+                || _player.getPlayerPosition() == encounterPosition) {
+            encounterPosition = MapPosition::getRandomPosition(maxPosition);
+        }
+        Encounter newEncounter = Encounter(encounterPosition);
+        _encounters.push_back(newEncounter);
+        _worldMap.setOverlayAt(encounterPosition, newEncounter.getEncounterChar());
     }
 }
 
@@ -78,4 +100,15 @@ bool Game::isPlayerAtEncounter() const {
         }
     }
     return false;
+}
+
+int Game::getEncounterAt(const MapPosition &mapPosition) {
+    int index = 0;
+    for(auto& encounter : _encounters) {
+        if(encounter.getMapPosition() == _player.getPlayerPosition()) {
+            return index;
+        }
+        index++;
+    }
+    return -1;
 }

@@ -27,6 +27,7 @@ public:
     void hideOverlayAt(const MapPosition& mapPosition);
     void setOverlayAt(const MapPosition& mapPosition, const char overlayChar);
     char getOverlayAt(const MapPosition& mapPosition);
+    MapPosition getMaxPosition() const;
 
     friend std::ostream& operator<< (std::ostream& out, const WorldMap& worldMap);
 

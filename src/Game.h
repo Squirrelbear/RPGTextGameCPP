@@ -13,7 +13,7 @@
 
 class Game {
 public:
-    Game(const std::string mapFileName, const Player& player);
+    Game(const std::string& mapFileName, const Player& player);
     void gameLoop();
 
 private:
@@ -21,6 +21,7 @@ private:
     Player _player;
     WorldMap _worldMap;
 
+    void spawnEncounters(const size_t count, const MapPosition& maxPosition);
     bool isGameOver() const;
     void navigateMap();
     void processEncounter(Encounter& encounter);
@@ -28,6 +29,7 @@ private:
     void showGameWonMessage() const;
     bool movePlayer(const MapPosition& moveOffset);
     bool isPlayerAtEncounter() const;
+    int getEncounterAt(const MapPosition& mapPosition);
 };
 
 
