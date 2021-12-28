@@ -7,6 +7,7 @@
 
 #include <iostream>
 #include "../Enemies/CombatUnit.h"
+#include "../WorldMap/MapPosition.h"
 
 #define PLAYER_NAME_MINLENGTH 3
 #define PLAYER_NAME_MAXLENGTH 20
@@ -16,7 +17,9 @@
 class Player : public CombatUnit {
 public:
     Player() : Player(PLAYER_NAME_DEFAULT) {}
-    Player(const std::string playerName) : CombatUnit(playerName, '@', 100) {}
+    Player(const std::string playerName) : CombatUnit(playerName, '@', 100) {
+        setPlayerPosition({5,5});
+    }
     /*
      * Validates if the provided Player object has a valid name.
      * For a name to be valid it must have a length between
@@ -30,10 +33,15 @@ public:
      */
     bool hasValidPlayerName() const;
 
+    void setPlayerPosition(const MapPosition playerPosition);
+    MapPosition getPlayerPosition() const;
+
     friend std::istream& operator>> (std::istream& in, Player& player);
 
-
     std::optional<UnitAttack> chooseAttack();
+
+private:
+    MapPosition _playerPosition;
 };
 
 /*

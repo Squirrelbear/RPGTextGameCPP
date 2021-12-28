@@ -8,6 +8,7 @@
 #include <iostream>
 #include <vector>
 #include "MapTile.h"
+#include "MapPosition.h"
 
 //#define WORLD_MAP_SHOW_NUMBERS
 
@@ -21,6 +22,11 @@ public:
     void loadMap(const std::string fileName);
     // Removes the current map and replaces with a reload from the last loaded file.
     void reloadMap();
+
+    bool canMoveToPosition(const MapPosition& mapPosition);
+    void hideOverlayAt(const MapPosition& mapPosition);
+    void setOverlayAt(const MapPosition& mapPosition, const char overlayChar);
+    char getOverlayAt(const MapPosition& mapPosition);
 
     friend std::ostream& operator<< (std::ostream& out, const WorldMap& worldMap);
 

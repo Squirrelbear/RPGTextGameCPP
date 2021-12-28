@@ -29,3 +29,7 @@ char Encounter::getEncounterChar() const {
 bool Encounter::applyAttack(const UnitAttack &unitAttack, const CombatUnit &attacker, CombatUnit &target) {
     return false;
 }
+
+MapPosition Encounter::getMapPosition() const {
+    return _mapPosition;
+}

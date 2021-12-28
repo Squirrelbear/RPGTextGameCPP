@@ -35,3 +35,24 @@ std::ostream& operator<< (std::ostream& out, const WorldMap& worldMap) {
 
     return out;
 }
+
+bool WorldMap::canMoveToPosition(const MapPosition &mapPosition) {
+    if(mapPosition.x < 0 || mapPosition.y < 0 || mapPosition.y >= _map.size()
+            || mapPosition.x >= _map.at(0).size()) {
+        return false;
+    }
+
+    return _map.at(mapPosition.y).at(mapPosition.x).isWalkable();
+}
+
+void WorldMap::hideOverlayAt(const MapPosition &mapPosition) {
+    _map.at(mapPosition.y).at(mapPosition.x).hideOverlayChar();
+}
+
+void WorldMap::setOverlayAt(const MapPosition &mapPosition, const char overlayChar) {
+    _map.at(mapPosition.y).at(mapPosition.x).setOverlay(overlayChar);
+}
+
+char WorldMap::getOverlayAt(const MapPosition &mapPosition) {
+    return _map.at(mapPosition.y).at(mapPosition.x).getOverlayChar();
+}

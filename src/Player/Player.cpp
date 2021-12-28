@@ -41,11 +41,20 @@ std::optional<UnitAttack> Player::chooseAttack() {
     return UnitAttack();
 }
 
+MapPosition Player::getPlayerPosition() const {
+    return _playerPosition;
+}
+
+void Player::setPlayerPosition(const MapPosition playerPosition) {
+    _playerPosition = playerPosition;
+}
+
 Player createPlayer() {
     Player player;
     do {
         std::cout << "Enter your name: ";
         std::cin >> player;
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     } while(!player.hasValidPlayerName());
     return player;
 }

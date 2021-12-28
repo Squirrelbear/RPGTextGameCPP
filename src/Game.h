@@ -26,6 +26,8 @@ private:
     void processEncounter(Encounter& encounter);
     void showGameOverMessage() const;
     void showGameWonMessage() const;
+    bool movePlayer(const MapPosition& moveOffset);
+    bool isPlayerAtEncounter() const;
 };
 
 

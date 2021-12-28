@@ -15,6 +15,7 @@ public:
     void playEncounterTurn(Player& player);
     bool isWon() const;
     char getEncounterChar() const;
+    MapPosition getMapPosition() const;
 
 private:
     MapPosition _mapPosition;
