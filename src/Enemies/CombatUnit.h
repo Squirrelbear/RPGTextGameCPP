@@ -18,10 +18,12 @@ public:
     std::string getName() const;
     void setName(const std::string unitName);
     UnitHealth& getUnitHealth();
+    UnitMana& getUnitMana();
     std::optional<UnitAttack> getUnitAttack(const size_t attackID) const;
     std::optional<UnitAttack> getRandomUnitAttack() const;
     size_t getAttackCount() const;
     char getMapOverlayChar() const;
+    void performAttackOn(const UnitAttack& attack, CombatUnit &attackTarget);
 
     friend std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit);
 
@@ -33,6 +35,15 @@ private:
     UnitHealth _unitHealth;
     UnitMana _unitMana;
     std::vector<UnitAttack> _attackTypes;
+
+    /*
+     * Returns true when there is equal or more mana required for the attack.
+     */
+    bool canCastWithMana(const UnitAttack& attackType);
+    /*
+     * Uses decreaseStatBy to reduce the mana for the attack.
+     */
+    void consumeManaForAttack(const UnitAttack& attackType);
 };
 
 

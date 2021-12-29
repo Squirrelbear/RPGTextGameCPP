@@ -18,10 +18,12 @@ public:
     MapPosition getMapPosition() const;
 
 private:
+    int _turnCount;
     MapPosition _mapPosition;
     std::vector<Enemy> _enemyList;
 
-    bool applyAttack(const UnitAttack& unitAttack, const CombatUnit& attacker, CombatUnit& target);
+    bool playCombatUnitTurn(CombatUnit& attackerUnit, CombatUnit& targetUnit);
+    bool applyAttack(UnitAttack& unitAttack, CombatUnit& attacker, CombatUnit& target);
 };
 
 

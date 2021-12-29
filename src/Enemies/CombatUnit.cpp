@@ -10,7 +10,8 @@ CombatUnit::CombatUnit(const std::string unitName, const char mapOverlayChar, co
 {
     setName(unitName);
     _mapOverlayChar = mapOverlayChar;
-    _attackTypes.emplace_back();
+    // TODO
+    _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 5));
 }
 
 void CombatUnit::setName(const std::string unitName) {
@@ -51,3 +52,34 @@ std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit) {
 char CombatUnit::getMapOverlayChar() const {
     return _mapOverlayChar;
 }
+
+void CombatUnit::performAttackOn(const UnitAttack &attack, CombatUnit &attackTarget) {
+    std::cout << getName() << "'s \"" << attack.getName() << "\" attack hit " << attackTarget.getName() << " for ";
+    int damage = attack.getRandomBaseDamage();
+    bool isCriticalHit = attack.isCriticalDamage();
+    if(isCriticalHit) {
+        damage = attack.getCriticalModifiedDamage(damage);
+    }
+    int actualDamage = attackTarget.getUnitHealth().decreaseStatBy(damage);
+    std::cout << actualDamage << " damage. ";
+    if(isCriticalHit) {
+        std::cout << "Critical Hit! ";
+    }
+    if(actualDamage != damage) {
+        std::cout << "Overkilled by " << (damage-actualDamage) << " damage!";
+    }
+    std::cout << std::endl;
+}
+
+UnitMana &CombatUnit::getUnitMana() {
+    return _unitMana;
+}
+
+bool CombatUnit::canCastWithMana(const UnitAttack& attackType) {
+    return getUnitMana().getStatValue() >= attackType.getManaCost();
+}
+
+void CombatUnit::consumeManaForAttack(const UnitAttack &attackType) {
+    getUnitMana().decreaseStatBy(attackType.getManaCost());
+}
+

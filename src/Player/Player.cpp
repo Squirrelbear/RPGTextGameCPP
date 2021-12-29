@@ -38,7 +38,7 @@ std::istream& operator>> (std::istream& in, Player& player) {
 
 std::optional<UnitAttack> Player::chooseAttack() {
     // TODO
-    return UnitAttack();
+    return getUnitAttack(0);
 }
 
 MapPosition Player::getPlayerPosition() const {

@@ -9,7 +9,13 @@
 
 class UnitAttack {
 public:
+    UnitAttack(const std::string& attackName, const int& damageMin, const int& damageMax,
+               const float& criticalChance, const float& criticalDamageMultiplier, const size_t& manaCost);
     size_t getManaCost() const;
+    std::string getName() const;
+    int getRandomBaseDamage() const;
+    bool isCriticalDamage() const;
+    int getCriticalModifiedDamage(const int& baseDamage) const;
 
 private:
     int _baseDamageMin;

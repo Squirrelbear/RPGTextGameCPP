@@ -4,10 +4,3 @@
 
 #include "UnitMana.h"
 
-bool UnitMana::canCastWithMana(const UnitAttack &unitAttack) {
-    return getStatValue() >= unitAttack.getManaCost();
-}
-
-void UnitMana::consumeManaForAttack(const UnitAttack &unitAttack) {
-    decreaseStatBy(unitAttack.getManaCost());
-}
