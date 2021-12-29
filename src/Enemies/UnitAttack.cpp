@@ -11,7 +11,7 @@ size_t UnitAttack::getManaCost() const {
 
 UnitAttack::UnitAttack(const std::string &attackName, const int &damageMin, const int &damageMax,
                        const float &criticalChance, const float &criticalDamageMultiplier, const size_t &manaCost)
-           : _baseDamageMin(damageMin), _baseDamageMax(damageMax), _criticalChance(criticalChance),
+           : _attackName(attackName), _baseDamageMin(damageMin), _baseDamageMax(damageMax), _criticalChance(criticalChance),
              _criticalDamageMultiplier(criticalDamageMultiplier), _manaCost(manaCost) {
 
 }

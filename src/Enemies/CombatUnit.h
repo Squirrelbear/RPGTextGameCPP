@@ -24,6 +24,7 @@ public:
     size_t getAttackCount() const;
     char getMapOverlayChar() const;
     void performAttackOn(const UnitAttack& attack, CombatUnit &attackTarget);
+    bool hasUsableAbility();
 
     friend std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit);
 

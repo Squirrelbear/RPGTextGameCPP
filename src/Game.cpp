@@ -24,11 +24,14 @@ void Game::gameLoop() {
         if(!_player.getUnitHealth().isDead()) {
             _encounters.erase(_encounters.begin()+encounterID);
         }
-    } while(!allEncountersCleared() && !_player.getUnitHealth().isDead());
+    } while(!allEncountersCleared() && !_player.getUnitHealth().isDead() && _player.hasUsableAbility());
 
     if(allEncountersCleared()) {
         showGameWonMessage();
     } else {
+        if(!_player.getUnitHealth().isDead()) {
+            std::cout << "You ran out of mana and the remaining enemy force wiped you out." << std::endl;
+        }
         showGameOverMessage();
     }
 }

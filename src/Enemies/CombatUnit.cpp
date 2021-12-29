@@ -56,6 +56,7 @@ char CombatUnit::getMapOverlayChar() const {
 }
 
 void CombatUnit::performAttackOn(const UnitAttack &attack, CombatUnit &attackTarget) {
+    consumeManaForAttack(attack);
     std::cout << getName() << "'s \"" << attack.getName() << "\" attack hit " << attackTarget.getName() << " for ";
     int damage = attack.getRandomBaseDamage();
     bool isCriticalHit = attack.isCriticalDamage();
@@ -95,5 +96,9 @@ std::vector<int> CombatUnit::getUsableAttacks() {
         index++;
     }
     return usableAttacks;
+}
+
+bool CombatUnit::hasUsableAbility() {
+    return !getUsableAttacks().empty();
 }
 
