@@ -4,7 +4,7 @@
 #include "Game.h"
 
 int main() {
-    srand(time(NULL));
+    srand(time(nullptr));
 
     std::string playAgainInput;
     Player player = createPlayer();

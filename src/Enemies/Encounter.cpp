@@ -6,7 +6,7 @@
 
 Encounter::Encounter(const MapPosition &mapPosition) {
     _mapPosition = mapPosition;
-    _enemyList.push_back(Enemy("Test", '#', 100));
+    _enemyList.emplace_back("Test", '#', 100);
     _turnCount = 0;
 }
 

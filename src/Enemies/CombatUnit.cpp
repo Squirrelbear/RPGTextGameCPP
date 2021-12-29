@@ -5,18 +5,18 @@
 #include <iostream>
 #include "CombatUnit.h"
 
-CombatUnit::CombatUnit(const std::string unitName, const char mapOverlayChar, const size_t initialMaxHealth)
+CombatUnit::CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth)
     : _unitHealth(initialMaxHealth), _unitMana(100)
 {
     setName(unitName);
     _mapOverlayChar = mapOverlayChar;
     // TODO
-    _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 5));
-    _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 50));
-    _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 105));
+    _attackTypes.emplace_back("Example Fireball", 10, 20, 30, 1.5, 5);
+    _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 50));
+    _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 105));
 }
 
-void CombatUnit::setName(const std::string unitName) {
+void CombatUnit::setName(const std::string& unitName) {
     this->_unitName = unitName;
 }
 
@@ -30,7 +30,6 @@ UnitHealth & CombatUnit::getUnitHealth() {
 
 std::optional<UnitAttack> CombatUnit::getUnitAttack(const size_t attackID) const {
     if(attackID >= _attackTypes.size()) {
-        //std::cerr << "INVALID ATTACK: " << attackID;
         return std::nullopt;
     }
     return _attackTypes.at(attackID);

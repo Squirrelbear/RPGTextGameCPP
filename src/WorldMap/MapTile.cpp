@@ -4,10 +4,9 @@
 
 #include "MapTile.h"
 
-MapTile::MapTile(const char tileChar, const bool isWalkable) {
-    setTileChar(tileChar);
-    setIsWalkable(isWalkable);
-    _showOverlay = false;
+MapTile::MapTile(const char tileChar, const bool isWalkable)
+    : _tileChar(tileChar), _isWalkable(isWalkable), _showOverlay(false), _overlayChar(' ')
+{
 }
 
 void MapTile::setTileChar(const char tileChar) {

@@ -17,7 +17,7 @@
 class Player : public CombatUnit {
 public:
     Player() : Player(PLAYER_NAME_DEFAULT) {}
-    Player(const std::string playerName) : CombatUnit(playerName, '@', 100) {
+    explicit Player(const std::string& playerName) : CombatUnit(playerName, '@', 100) {
         setPlayerPosition({5,5});
     }
     /*
@@ -38,7 +38,7 @@ public:
 
     friend std::istream& operator>> (std::istream& in, Player& player);
 
-    std::optional<UnitAttack> chooseAttack();
+    std::optional<UnitAttack> chooseAttack() override;
 
 private:
     MapPosition _playerPosition;

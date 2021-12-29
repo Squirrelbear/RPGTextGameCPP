@@ -11,7 +11,7 @@
 
 class Encounter {
 public:
-    Encounter(const MapPosition& mapPosition);
+    explicit Encounter(const MapPosition& mapPosition);
     void playEncounterTurn(Player& player);
     bool isWon() const;
     char getEncounterChar() const;

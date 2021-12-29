@@ -16,10 +16,10 @@
 class WorldMap {
 public:
     // Initialises the WorldMap by loading from the specified file name.
-    WorldMap(const std::string fileName);
+    explicit WorldMap(const std::string& fileName);
 
     // Removes the current map and loads the map using the specified file name.
-    void loadMap(const std::string fileName);
+    void loadMap(const std::string& fileName);
     // Removes the current map and replaces with a reload from the last loaded file.
     void reloadMap();
 

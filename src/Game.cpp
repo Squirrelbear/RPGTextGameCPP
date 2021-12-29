@@ -51,7 +51,7 @@ void Game::spawnEncounters(const size_t count, const MapPosition& maxPosition) {
 }
 
 bool Game::allEncountersCleared() const {
-    return _encounters.size() == 0;
+    return _encounters.empty();
 }
 
 void Game::navigateMap() {
@@ -97,12 +97,10 @@ bool Game::movePlayer(const MapPosition &moveOffset) {
 }
 
 bool Game::isPlayerAtEncounter() const {
-    for(auto& encounter : _encounters) {
-        if(encounter.getMapPosition() == _player.getPlayerPosition()) {
-            return true;
-        }
-    }
-    return false;
+    return std::any_of(_encounters.begin(), _encounters.end(),
+                       [&](const Encounter& encounter){
+                                    return encounter.getMapPosition() == _player.getPlayerPosition();
+                            });
 }
 
 int Game::getEncounterAt(const MapPosition &mapPosition) {

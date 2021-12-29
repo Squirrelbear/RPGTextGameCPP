@@ -4,11 +4,11 @@
 
 #include "WorldMap.h"
 
-WorldMap::WorldMap(const std::string fileName) {
+WorldMap::WorldMap(const std::string& fileName) {
     loadMap(fileName);
 }
 
-void WorldMap::loadMap(const std::string fileName) {
+void WorldMap::loadMap(const std::string& fileName) {
     _mapFileName = fileName;
     reloadMap();
 }

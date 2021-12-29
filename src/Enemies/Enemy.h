@@ -9,9 +9,9 @@
 
 class Enemy : public CombatUnit {
 public:
-    Enemy(const std::string enemyName, const char mapOverlayChar, const size_t initialMaxHealth)
+    Enemy(const std::string& enemyName, const char mapOverlayChar, const size_t initialMaxHealth)
                         : CombatUnit(enemyName, mapOverlayChar, initialMaxHealth) {}
-    std::optional<UnitAttack> chooseAttack();
+    std::optional<UnitAttack> chooseAttack() override;
 };
 
 
