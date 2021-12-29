@@ -12,6 +12,8 @@ CombatUnit::CombatUnit(const std::string unitName, const char mapOverlayChar, co
     _mapOverlayChar = mapOverlayChar;
     // TODO
     _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 5));
+    _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 50));
+    _attackTypes.push_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 105));
 }
 
 void CombatUnit::setName(const std::string unitName) {
@@ -81,5 +83,17 @@ bool CombatUnit::canCastWithMana(const UnitAttack& attackType) {
 
 void CombatUnit::consumeManaForAttack(const UnitAttack &attackType) {
     getUnitMana().decreaseStatBy(attackType.getManaCost());
+}
+
+std::vector<int> CombatUnit::getUsableAttacks() {
+    std::vector<int> usableAttacks;
+    int index = 0;
+    for(auto& attack : _attackTypes) {
+        if(canCastWithMana(attack)) {
+            usableAttacks.push_back(index);
+        }
+        index++;
+    }
+    return usableAttacks;
 }
 

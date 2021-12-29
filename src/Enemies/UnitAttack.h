@@ -17,6 +17,8 @@ public:
     bool isCriticalDamage() const;
     int getCriticalModifiedDamage(const int& baseDamage) const;
 
+    friend std::ostream& operator<< (std::ostream& out, const UnitAttack& unitAttack);
+
 private:
     int _baseDamageMin;
     int _baseDamageMax;

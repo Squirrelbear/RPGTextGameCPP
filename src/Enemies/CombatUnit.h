@@ -29,6 +29,9 @@ public:
 
     virtual std::optional<UnitAttack> chooseAttack() = 0;
 
+protected:
+    std::vector<int> getUsableAttacks();
+
 private:
     char _mapOverlayChar;
     std::string _unitName;

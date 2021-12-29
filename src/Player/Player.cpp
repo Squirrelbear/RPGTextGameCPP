@@ -3,6 +3,7 @@
 //
 
 #include "Player.h"
+#include <algorithm>
 
 bool Player::hasValidPlayerName() const {
     if(getName().length() < PLAYER_NAME_MINLENGTH) {
@@ -37,8 +38,26 @@ std::istream& operator>> (std::istream& in, Player& player) {
 }
 
 std::optional<UnitAttack> Player::chooseAttack() {
-    // TODO
-    return getUnitAttack(0);
+    std::vector<int> usableAttacks = getUsableAttacks();
+    if(usableAttacks.empty()) {
+        std::cout << "You have no usable attacks." << std::endl;
+        return std::nullopt;
+    } else if(usableAttacks.size() == 1) {
+        std::cout << "You only had one usable attack so it was used." << std::endl;
+        return getUnitAttack(usableAttacks.at(0));
+    }
+
+    int choice = -1;
+    do {
+        std::cout << "Select one of the following valid ability choices by entering its number." << std::endl;
+        for(auto& attackID : usableAttacks) {
+            std::cout << (attackID+1) << ". " << getUnitAttack(attackID).value() << std::endl;
+        }
+        std::cout << "Enter choice: ";
+        std::cin >> choice;
+        --choice;
+    } while(std::find(usableAttacks.begin(), usableAttacks.end(), choice) == usableAttacks.end());
+    return getUnitAttack(choice);
 }
 
 MapPosition Player::getPlayerPosition() const {
