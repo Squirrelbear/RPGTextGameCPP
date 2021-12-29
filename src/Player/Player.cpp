@@ -48,13 +48,20 @@ std::optional<UnitAttack> Player::chooseAttack() {
     }
 
     int choice = -1;
+    std::string playerInput;
     do {
         std::cout << "Select one of the following valid ability choices by entering its number." << std::endl;
         for(auto& attackID : usableAttacks) {
             std::cout << (attackID+1) << ". " << getUnitAttack(attackID).value() << std::endl;
         }
         std::cout << "Enter choice: ";
-        std::cin >> choice;
+        std::getline(std::cin, playerInput);
+        try {
+            choice = std::stoi(playerInput);
+        } catch(...) {
+            std::cout << "Invalid input. Please enter a number matching an option." << std::endl;
+            continue;
+        }
         --choice;
     } while(std::find(usableAttacks.begin(), usableAttacks.end(), choice) == usableAttacks.end());
     return getUnitAttack(choice);
