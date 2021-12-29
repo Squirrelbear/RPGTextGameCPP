@@ -22,7 +22,7 @@ private:
     WorldMap _worldMap;
 
     void spawnEncounters(const size_t count, const MapPosition& maxPosition);
-    bool isGameOver() const;
+    bool allEncountersCleared() const;
     void navigateMap();
     void processEncounter(Encounter& encounter);
     void showGameOverMessage() const;

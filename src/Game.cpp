@@ -24,12 +24,12 @@ void Game::gameLoop() {
         if(!_player.getUnitHealth().isDead()) {
             _encounters.erase(_encounters.begin()+encounterID);
         }
-    } while(!isGameOver() && !_player.getUnitHealth().isDead());
+    } while(!allEncountersCleared() && !_player.getUnitHealth().isDead());
 
-    if(isGameOver()) {
-        showGameOverMessage();
-    } else {
+    if(allEncountersCleared()) {
         showGameWonMessage();
+    } else {
+        showGameOverMessage();
     }
 }
 
@@ -47,7 +47,7 @@ void Game::spawnEncounters(const size_t count, const MapPosition& maxPosition) {
     }
 }
 
-bool Game::isGameOver() const {
+bool Game::allEncountersCleared() const {
     return _encounters.size() == 0;
 }
 
