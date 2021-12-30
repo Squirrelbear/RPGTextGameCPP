@@ -20,7 +20,7 @@ public:
     UnitHealth& getUnitHealth();
     UnitMana& getUnitMana();
     std::optional<UnitAttack> getUnitAttack(const size_t attackID) const;
-    std::optional<UnitAttack> getRandomUnitAttack() const;
+    std::optional<UnitAttack> getRandomUnitAttack();
     size_t getAttackCount() const;
     char getMapOverlayChar() const;
     void performAttackOn(const UnitAttack& attack, CombatUnit &attackTarget);

@@ -11,9 +11,9 @@ CombatUnit::CombatUnit(const std::string& unitName, const char mapOverlayChar, c
     setName(unitName);
     _mapOverlayChar = mapOverlayChar;
     // TODO
-    _attackTypes.emplace_back("Example Fireball", 10, 20, 30, 1.5, 5);
+    _attackTypes.emplace_back("Example Fireball", 5, 8, 30, 1.5, 5);
     _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 50));
-    _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 105));
+    _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 20));
 }
 
 void CombatUnit::setName(const std::string& unitName) {
@@ -35,8 +35,12 @@ std::optional<UnitAttack> CombatUnit::getUnitAttack(const size_t attackID) const
     return _attackTypes.at(attackID);
 }
 
-std::optional<UnitAttack> CombatUnit::getRandomUnitAttack() const {
-    return getUnitAttack(rand() % getAttackCount());
+std::optional<UnitAttack> CombatUnit::getRandomUnitAttack() {
+    std::vector<int> usableAttacks = getUsableAttacks();
+    if(usableAttacks.empty()) {
+        return std::nullopt;
+    }
+    return getUnitAttack(usableAttacks.at(rand() % usableAttacks.size()));
 }
 
 size_t CombatUnit::getAttackCount() const {
