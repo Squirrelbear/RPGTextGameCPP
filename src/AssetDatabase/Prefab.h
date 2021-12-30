@@ -8,7 +8,7 @@
 #include <iostream>
 #include <vector>
 
-enum PrefabType {AttackType, Enemy, Player};
+enum PrefabType {ATTACK_TYPE, ENEMY, PLAYER};
 
 class Prefab {
 public:
@@ -25,7 +25,7 @@ class AttackTypePrefab : public Prefab {
 public:
     AttackTypePrefab(const int prefabID, const std::string& attackName, const int& damageMin, const int& damageMax,
                      const float& criticalChance, const float& criticalDamageMultiplier, const size_t& manaCost)
-                     : Prefab(PrefabType::AttackType, prefabID), attackName(attackName), damageMin(damageMin),
+                     : Prefab(PrefabType::ATTACK_TYPE, prefabID), attackName(attackName), damageMin(damageMin),
                        damageMax(damageMax), criticalChance(criticalChance),
                        criticalDamageMultiplier(criticalDamageMultiplier), manaCost(manaCost) {}
 
@@ -41,7 +41,7 @@ class EnemyPrefab : public Prefab {
 public:
     EnemyPrefab(const int prefabID, const std::string& enemyName, const char mapOverlayChar,
                 const size_t initialMaxHealth, const size_t initialMaxMana, std::vector<int> attackTypes)
-                : Prefab(PrefabType::Enemy, prefabID), enemyName(enemyName), mapOverlayChar(mapOverlayChar),
+                : Prefab(PrefabType::ENEMY, prefabID), enemyName(enemyName), mapOverlayChar(mapOverlayChar),
                     initialMaxHealth(initialMaxHealth), initialMaxMana(initialMaxMana), attackTypes(attackTypes) {}
 
     const std::string enemyName;
@@ -54,7 +54,7 @@ public:
 class PlayerPrefab : public Prefab {
 public:
     PlayerPrefab(const int prefabID, const size_t initialMaxHealth, const size_t initialMaxMana, std::vector<int> attackTypes)
-                    : Prefab(PrefabType::Player, prefabID), initialMaxHealth(initialMaxHealth),
+                    : Prefab(PrefabType::PLAYER, prefabID), initialMaxHealth(initialMaxHealth),
                       initialMaxMana(initialMaxMana), attackTypes(attackTypes) {}
 
     const size_t initialMaxHealth;
