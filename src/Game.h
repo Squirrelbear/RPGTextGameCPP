@@ -14,7 +14,7 @@
 
 class Game {
 public:
-    Game(const std::string& mapFileName, const std::string& playerName);
+    Game(const std::string& mapFileName, const std::string& assetsFileName, const std::string& playerName);
     void gameLoop();
 
 private:

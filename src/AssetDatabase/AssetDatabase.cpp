@@ -3,9 +3,12 @@
 //
 
 #include "AssetDatabase.h"
+#include "../Utilities/StringUtility.h"
+#include <fstream>
+#include <sstream>
 
-AssetDatabase::AssetDatabase() {
-
+AssetDatabase::AssetDatabase(const std::string& assetDatabaseFile) {
+    loadAssetDatabase(assetDatabaseFile);
 }
 
 std::optional<UnitAttack> AssetDatabase::getUnitAttackByID(const int id) {
@@ -70,4 +73,138 @@ std::optional<std::string> AssetDatabase::getNameForEnemyType(const std::string 
     for(int i = 0; i < randIndex; i++, it++);
 
     return it->second;
+}
+
+void AssetDatabase::loadAssetDatabase(const std::string &assetDatabaseFileName) {
+    std::string currentLine;
+    std::ifstream databaseFile(assetDatabaseFileName);
+    if(!databaseFile.is_open()) {
+        std::cerr << "Critical error! Could not open asset file: " << assetDatabaseFileName << std::endl;
+        return;
+    }
+    while(std::getline(databaseFile, currentLine)) {
+        insertDatabase(currentLine);
+    }
+    databaseFile.close();
+}
+
+void AssetDatabase::insertDatabase(const std::string& dataLine) {
+    std::stringstream lineStream(dataLine);
+    std::string dataType;
+    lineStream >> dataType;
+
+    if(lineStream.fail()) {
+        return;
+    } else if(dataType == "ENEMYNAME") {
+        insertEnemyNamePrefab(lineStream);
+    } else if(dataType == "PLAYER") {
+        insertPlayerPrefab(lineStream);
+    } else if(dataType == "ENEMY") {
+        insertEnemyPrefab(lineStream);
+    } else if(dataType == "ATTACK") {
+        insertAttackPrefab(lineStream);
+    }
+}
+
+void AssetDatabase::insertEnemyNamePrefab(std::stringstream &lineStream) {
+    std::string enemyType, enemyName;
+    if(!readExpectedData(lineStream, enemyType, "enemy type")
+       || !readLine(lineStream, enemyName, "enemy name")) {
+        return;
+    }
+    // Successfully read required data: insert element.
+    _enemyTypeToNameOptionsMap.insert(std::pair<std::string,std::string>(enemyType, enemyName));
+}
+
+void AssetDatabase::insertEnemyPrefab(std::stringstream &lineStream) {
+    int prefabID = _enemyPrefabs.size();
+    std::string enemyType;
+    char mapOverlayChar;
+    size_t initialMaxHealth, initialMaxMana;
+    std::vector<int> attackTypes;
+
+    if(!readExpectedData(lineStream, enemyType, "enemy type")
+       || !readExpectedData(lineStream, mapOverlayChar, "map overlay char")
+       || !readExpectedData(lineStream, initialMaxHealth, "initial max health")
+       || !readExpectedData(lineStream, initialMaxMana, "initial max mana")
+       || !readAllInts(lineStream, attackTypes, "attack types", true)) {
+        return;
+    }
+    // Successfully read required data: insert element.
+    _enemyPrefabs.emplace_back(EnemyPrefab(prefabID, enemyType, mapOverlayChar, initialMaxHealth,
+                                           initialMaxMana, attackTypes));
+}
+
+void AssetDatabase::insertPlayerPrefab(std::stringstream &lineStream) {
+    int prefabID = _playerPrefabs.size();
+    size_t initialMaxHealth, initialMaxMana;
+    std::vector<int> attackTypes;
+
+    if(!readExpectedData(lineStream, initialMaxHealth, "initial max health")
+       || !readExpectedData(lineStream, initialMaxMana, "initial max mana")
+       || !readAllInts(lineStream, attackTypes, "attack types", true)) {
+        return;
+    }
+    // Successfully read required data: insert element.
+    _playerPrefabs.emplace_back(PlayerPrefab(prefabID, initialMaxHealth, initialMaxMana, attackTypes));
+}
+
+void AssetDatabase::insertAttackPrefab(std::stringstream &lineStream) {
+    int prefabID, damageMin, damageMax;
+    float criticalChance, criticalDamageMultiplier;
+    size_t manaCost;
+    std::string attackName;
+
+    if(!readExpectedData(lineStream, prefabID, "attack id")
+       || !readExpectedData(lineStream, damageMin, "damage min")
+       || !readExpectedData(lineStream, damageMax, "damage max")
+       || !readExpectedData(lineStream, criticalChance, "critical chance")
+       || !readExpectedData(lineStream, criticalDamageMultiplier, "critical damage multiplier")
+       || !readExpectedData(lineStream, manaCost, "mana cost")
+       || !readLine(lineStream, attackName, "attack name")) {
+        return;
+    }
+    if(damageMin > damageMax) {
+        std::cerr << "Damage min is greater than damage max for this attack. " << prefabID << " ";
+        std::cerr << attackName << ".";
+        return;
+    }
+    AttackTypePrefab test(prefabID, attackName, damageMin, damageMax,
+                     criticalChance, criticalDamageMultiplier,
+                     manaCost);
+    // Successfully read required data: insert element.
+    _attackTypePrefabs.insert_or_assign(prefabID, test);
+}
+
+template<class T>
+bool AssetDatabase::readExpectedData(std::stringstream &lineStream, T& output, const std::string &expectedType) {
+    lineStream >> output;
+    if(lineStream.fail()) {
+        std::cerr << "Failed to read expected " << expectedType << "." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool AssetDatabase::readLine(std::stringstream &lineStream, std::string &output, const std::string &expectedType) {
+    std::getline(lineStream, output);
+    trim(output);
+    if(output.empty()) {
+        std::cerr << "Failed to read expected " << expectedType << "." << std::endl;
+        return false;
+    }
+    return true;
+}
+
+bool AssetDatabase::readAllInts(std::stringstream &lineStream, std::vector<int> &output, const std::string &expectedType,
+                           const bool requireOneMin) {
+    int input;
+    while(lineStream >> input) {
+        output.emplace_back(input);
+    }
+    if(requireOneMin && output.empty()) {
+        std::cerr << "Failed to find at least one attack type for enemy." << std::endl;
+        return false;
+    }
+    return true;
 }

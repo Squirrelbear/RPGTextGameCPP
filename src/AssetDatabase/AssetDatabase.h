@@ -14,7 +14,7 @@
 
 class AssetDatabase {
 public:
-    AssetDatabase();
+    AssetDatabase(const std::string& assetDatabaseFile);
 
     std::optional<UnitAttack> getUnitAttackByID(const int id);
     std::vector<UnitAttack> getAllUnitAttacksByID(const std::vector<int> attackPrefabIDs);
@@ -29,6 +29,18 @@ private:
     std::vector<PlayerPrefab> _playerPrefabs;
 
     std::optional<std::string> getNameForEnemyType(const std::string& enemyType);
+    void loadAssetDatabase(const std::string& assetDatabaseFileName);
+    void insertDatabase(const std::string& dataLine);
+    void insertEnemyNamePrefab(std::stringstream& lineStream);
+    void insertEnemyPrefab(std::stringstream& lineStream);
+    void insertPlayerPrefab(std::stringstream& lineStream);
+    void insertAttackPrefab(std::stringstream& lineStream);
+
+    template<class T>
+    bool readExpectedData(std::stringstream& lineStream, T& output, const std::string& expectedType);
+    bool readLine(std::stringstream& lineStream, std::string& output, const std::string& expectedType);
+    bool readAllInts(std::stringstream& lineStream, std::vector<int>& output, const std::string& expectedType, const bool requireOneMin);
+
 };
 
 

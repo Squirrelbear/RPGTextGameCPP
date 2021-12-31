@@ -10,7 +10,7 @@ int main() {
     std::string playerName = choosePlayerName();
 
     do {
-        Game game("TODO", playerName);
+        Game game("TODO", "TODO", playerName);
         game.gameLoop();
 
         std::cout << "Play Again (Y/N): ";
