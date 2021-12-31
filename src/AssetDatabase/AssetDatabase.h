@@ -20,6 +20,7 @@ public:
     std::vector<UnitAttack> getAllUnitAttacksByID(const std::vector<int> attackPrefabIDs);
     Enemy getRandomEnemy();
     Player getRandomPlayerPrefab(const std::string& playerName, const MapPosition& initialPlayerPosition);
+    std::string getRandomMapFileName() const;
 
 private:
     std::vector<EnemyPrefab> _enemyPrefabs;
@@ -27,6 +28,7 @@ private:
     std::map<int, AttackTypePrefab> _attackTypePrefabs;
     std::map<int, UnitAttack> _generatedAttackTypes;
     std::vector<PlayerPrefab> _playerPrefabs;
+    std::vector<std::string> _mapFileNames;
 
     std::optional<std::string> getNameForEnemyType(const std::string& enemyType);
     void loadAssetDatabase(const std::string& assetDatabaseFileName);
@@ -35,6 +37,7 @@ private:
     void insertEnemyPrefab(std::stringstream& lineStream);
     void insertPlayerPrefab(std::stringstream& lineStream);
     void insertAttackPrefab(std::stringstream& lineStream);
+    void insertMapFileName(std::stringstream& lineStream);
 
     template<class T>
     bool readExpectedData(std::stringstream& lineStream, T& output, const std::string& expectedType);

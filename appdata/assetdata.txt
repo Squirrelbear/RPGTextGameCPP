@@ -25,3 +25,4 @@ ATTACK 10 3 5 10 2 5 Stealthy Slash
 ATTACK 11 3 5 10 2 5 Bite
 ATTACK 12 3 5 10 2 5 Vicious Bit
 ATTACK 13 3 5 10 2 5 Howl
+MAP map.txt

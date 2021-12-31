@@ -6,8 +6,9 @@
 #include <ctime>
 #include <algorithm>
 
-Game::Game(const std::string& mapFileName, const std::string& assetsFileName, const std::string& playerName)
-    : _assetDatabase(assetsFileName), _worldMap(mapFileName), _player(_assetDatabase.getRandomPlayerPrefab(playerName, {5,5})) {
+Game::Game(const std::string& assetsFileName, const std::string& playerName)
+    : _assetDatabase(assetsFileName), _worldMap(_assetDatabase.getRandomMapFileName()),
+    _player(_assetDatabase.getRandomPlayerPrefab(playerName, {5,5})) {
     _worldMap.setOverlayAt(_player.getPlayerPosition(), _player.getMapOverlayChar());
     spawnEncounters(5, _worldMap.getMaxPosition());
     std::cout << "Welcome " << _player.getName() << "! You are represented by the @ symbol." << std::endl;
@@ -117,7 +118,7 @@ int Game::getEncounterAt(const MapPosition &mapPosition) {
     return -1;
 }
 
-void playGame(const std::string& mapFileName, const std::string& assetFileName) {
+void playGame(const std::string& assetFileName) {
     srand(time(nullptr));
 
     std::cout << "Welcome to RPG Text Game C++ Edition!\nDeveloped by Peter Mitchell." << std::endl << std::endl;
@@ -126,7 +127,7 @@ void playGame(const std::string& mapFileName, const std::string& assetFileName) 
     std::string playerName = choosePlayerName();
 
     do {
-        Game game(mapFileName, assetFileName, playerName);
+        Game game(assetFileName, playerName);
         game.gameLoop();
 
         std::cout << "Play Again (Y/N): ";

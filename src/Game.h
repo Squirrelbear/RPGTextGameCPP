@@ -14,7 +14,7 @@
 
 class Game {
 public:
-    Game(const std::string& mapFileName, const std::string& assetsFileName, const std::string& playerName);
+    Game(const std::string& assetsFileName, const std::string& playerName);
     void gameLoop();
 
 private:
@@ -34,7 +34,7 @@ private:
     int getEncounterAt(const MapPosition& mapPosition);
 };
 
-void playGame(const std::string& mapFileName, const std::string& assetFileName);
+void playGame(const std::string& assetFileName);
 
 
 #endif //RPGTEXTCPP_GAME_H

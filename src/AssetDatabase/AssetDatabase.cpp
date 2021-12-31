@@ -103,6 +103,8 @@ void AssetDatabase::insertDatabase(const std::string& dataLine) {
         insertEnemyPrefab(lineStream);
     } else if(dataType == "ATTACK") {
         insertAttackPrefab(lineStream);
+    } else if(dataType == "MAP") {
+        insertMapFileName(lineStream);
     }
 }
 
@@ -207,4 +209,21 @@ bool AssetDatabase::readAllInts(std::stringstream &lineStream, std::vector<int> 
         return false;
     }
     return true;
+}
+
+void AssetDatabase::insertMapFileName(std::stringstream & lineStream) {
+    std::string fileName;
+    if(!readLine(lineStream, fileName, "map file name")) {
+        return;
+    }
+    _mapFileNames.emplace_back(fileName);
+}
+
+std::string AssetDatabase::getRandomMapFileName() const {
+    if(_mapFileNames.empty()) {
+        std::cerr << "ERROR: No map filenames were defined." << std::endl;
+        return "";
+    }
+
+    return _mapFileNames.at(rand() % _mapFileNames.size());
 }
