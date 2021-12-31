@@ -2,8 +2,9 @@
 // Created by Peter on 26/12/2021.
 //
 
-#include <algorithm>
 #include "Game.h"
+#include <ctime>
+#include <algorithm>
 
 Game::Game(const std::string& mapFileName, const std::string& assetsFileName, const std::string& playerName)
     : _assetDatabase(assetsFileName), _worldMap(mapFileName), _player(_assetDatabase.getRandomPlayerPrefab(playerName, {5,5})) {
@@ -114,4 +115,23 @@ int Game::getEncounterAt(const MapPosition &mapPosition) {
         index++;
     }
     return -1;
+}
+
+void playGame(const std::string& mapFileName, const std::string& assetFileName) {
+    srand(time(nullptr));
+
+    std::cout << "Welcome to RPG Text Game C++ Edition!\nDeveloped by Peter Mitchell." << std::endl << std::endl;
+
+    std::string playAgainInput;
+    std::string playerName = choosePlayerName();
+
+    do {
+        Game game(mapFileName, assetFileName, playerName);
+        game.gameLoop();
+
+        std::cout << "Play Again (Y/N): ";
+        std::cin >> playAgainInput;
+    } while(playAgainInput == "Y");
+
+    std::cout << std::endl << std::endl << "Thank you for playing! See you next time!" << std::endl;
 }

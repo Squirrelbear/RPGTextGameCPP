@@ -34,5 +34,7 @@ private:
     int getEncounterAt(const MapPosition& mapPosition);
 };
 
+void playGame(const std::string& mapFileName, const std::string& assetFileName);
+
 
 #endif //RPGTEXTCPP_GAME_H
