@@ -36,6 +36,8 @@ private:
     std::vector<std::vector<MapTile>> _map;
     // The file used for loading/reloading the map
     std::string _mapFileName;
+
+    void loadDefaultMap();
 };
 
 

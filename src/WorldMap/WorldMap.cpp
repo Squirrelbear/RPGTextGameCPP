@@ -3,6 +3,7 @@
 //
 
 #include "WorldMap.h"
+#include <fstream>
 
 WorldMap::WorldMap(const std::string& fileName) {
     loadMap(fileName);
@@ -15,11 +16,33 @@ void WorldMap::loadMap(const std::string& fileName) {
 
 void WorldMap::reloadMap() {
     _map.clear();
-    for(int y = 0; y < 15; y++) {
+    std::ifstream mapFile(_mapFileName);
+    if(!mapFile.is_open()) {
+        std::cerr << "Failed to open map file using default instead: " << _mapFileName << std::endl;
+        mapFile.close();
+        loadDefaultMap();
+        return;
+    }
+    int height, width;
+    mapFile >> height >> width;
+    if(mapFile.fail()) {
+        std::cerr << "Failed to read valid height and width from map file: " << _mapFileName << std::endl;
+        mapFile.close();
+        loadDefaultMap();
+        return;
+    }
+
+    char mapBaseTile;
+    for(int y = 0; y < height; y++) {
         std::vector<MapTile> tileRow;
-        tileRow.reserve(15);
-        for(int x = 0; x < 15; x++) {
-            tileRow.emplace_back();
+        tileRow.reserve(width);
+        for(int x = 0; x < width; x++) {
+            mapFile >> mapBaseTile;
+            if(mapFile.fail()) {
+                std::cerr << "Failed to read valid map tile (" << x << ", " << y << ")." << std::endl;
+                return;
+            }
+            tileRow.emplace_back(MapTile(mapBaseTile, mapBaseTile == '.'));
         }
         _map.push_back(tileRow);
     }
@@ -63,4 +86,16 @@ MapPosition WorldMap::getMaxPosition() const {
     }
 
     return {(int)_map.at(0).size(), (int)_map.size()};
+}
+
+void WorldMap::loadDefaultMap() {
+    _map.clear();
+    for(int y = 0; y < 15; y++) {
+        std::vector<MapTile> tileRow;
+        tileRow.reserve(15);
+        for(int x = 0; x < 15; x++) {
+            tileRow.emplace_back();
+        }
+        _map.push_back(tileRow);
+    }
 }

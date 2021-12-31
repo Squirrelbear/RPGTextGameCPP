@@ -1,6 +1,6 @@
 #include "Game.h"
 
 int main() {
-    playGame("TODO", "assetdata.txt");
+    playGame("map.txt", "assetdata.txt");
     return 0;
 }
