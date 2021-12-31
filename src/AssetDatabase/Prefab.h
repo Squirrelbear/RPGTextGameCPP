@@ -32,6 +32,8 @@ public:
                        damageMax(damageMax), criticalChance(criticalChance),
                        criticalDamageMultiplier(criticalDamageMultiplier), manaCost(manaCost) {}
 
+    friend std::ostream& operator<< (std::ostream& out, const AttackTypePrefab& attackTypePrefab);
+
     std::string attackName;
     int damageMin;
     int damageMax;
@@ -47,6 +49,8 @@ public:
                 : Prefab(PrefabType::ENEMY, prefabID), enemyType(enemyType), mapOverlayChar(mapOverlayChar),
                     initialMaxHealth(initialMaxHealth), initialMaxMana(initialMaxMana), attackTypes(attackTypes) {}
 
+    friend std::ostream& operator<< (std::ostream& out, const EnemyPrefab& enemyPrefab);
+
     std::string enemyType;
     char mapOverlayChar;
     size_t initialMaxHealth;
@@ -59,6 +63,8 @@ public:
     PlayerPrefab(const int prefabID, const size_t initialMaxHealth, const size_t initialMaxMana, std::vector<int> attackTypes)
                     : Prefab(PrefabType::PLAYER, prefabID), initialMaxHealth(initialMaxHealth),
                       initialMaxMana(initialMaxMana), attackTypes(attackTypes) {}
+
+    friend std::ostream& operator<< (std::ostream& out, const PlayerPrefab& playerPrefab);
 
     const size_t initialMaxHealth;
     const size_t initialMaxMana;

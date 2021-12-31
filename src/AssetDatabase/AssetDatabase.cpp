@@ -227,3 +227,30 @@ std::string AssetDatabase::getRandomMapFileName() const {
 
     return _mapFileNames.at(rand() % _mapFileNames.size());
 }
+
+bool AssetDatabase::dumpDatabaseToFile(const std::string& fileName) {
+    std::ofstream outputFile(fileName);
+    if(!outputFile.is_open()) {
+        std::cerr << "ERROR: Failed to open output file to dump database: " << fileName << std::endl;
+        return false;
+    }
+
+    for(auto& playerPrefab : _playerPrefabs) {
+        outputFile << "PLAYER " << playerPrefab;
+    }
+    for (auto itr = _enemyTypeToNameOptionsMap.begin(); itr != _enemyTypeToNameOptionsMap.end(); itr++) {
+        outputFile << "ENEMYNAME " << itr->first << " " << itr->second << std::endl;
+    }
+    for(auto& enemyPrefab : _enemyPrefabs) {
+        outputFile << "ENEMY " << enemyPrefab;
+    }
+    for(auto& attack : _attackTypePrefabs) {
+        outputFile << "ATTACK " << attack.first << " " << attack.second;
+    }
+    for(auto& mapFileName : _mapFileNames) {
+        outputFile << "MAP " << mapFileName << std::endl;
+    }
+    outputFile.close();
+
+    return true;
+}

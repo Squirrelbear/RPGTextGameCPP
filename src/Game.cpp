@@ -12,6 +12,7 @@ Game::Game(const std::string& assetsFileName, const std::string& playerName)
     _worldMap.setOverlayAt(_player.getPlayerPosition(), _player.getMapOverlayChar());
     spawnEncounters(5, _worldMap.getMaxPosition());
     std::cout << "Welcome " << _player.getName() << "! You are represented by the @ symbol." << std::endl;
+    _assetDatabase.dumpDatabaseToFile("testdumpfile.txt");
 }
 
 void Game::gameLoop() {

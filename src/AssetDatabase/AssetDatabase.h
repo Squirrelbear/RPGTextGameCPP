@@ -22,6 +22,8 @@ public:
     Player getRandomPlayerPrefab(const std::string& playerName, const MapPosition& initialPlayerPosition);
     std::string getRandomMapFileName() const;
 
+    bool dumpDatabaseToFile(const std::string& fileName);
+
 private:
     std::vector<EnemyPrefab> _enemyPrefabs;
     std::multimap<std::string, std::string> _enemyTypeToNameOptionsMap;
