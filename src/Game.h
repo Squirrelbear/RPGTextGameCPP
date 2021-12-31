@@ -10,13 +10,15 @@
 #include "Enemies/Encounter.h"
 #include "Player/Player.h"
 #include "WorldMap/WorldMap.h"
+#include "AssetDatabase/AssetDatabase.h"
 
 class Game {
 public:
-    Game(const std::string& mapFileName, const Player& player);
+    Game(const std::string& mapFileName, const std::string& playerName);
     void gameLoop();
 
 private:
+    AssetDatabase _assetDatabase;
     std::vector<Encounter> _encounters;
     Player _player;
     WorldMap _worldMap;

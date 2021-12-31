@@ -5,8 +5,8 @@
 #include <algorithm>
 #include "Game.h"
 
-Game::Game(const std::string& mapFileName, const Player& player)
-    : _worldMap(mapFileName), _player(player) {
+Game::Game(const std::string& mapFileName, const std::string& playerName)
+    : _assetDatabase(), _worldMap(mapFileName), _player(_assetDatabase.getRandomPlayerPrefab(playerName, {5,5})) {
     _worldMap.setOverlayAt(_player.getPlayerPosition(), _player.getMapOverlayChar());
     spawnEncounters(5, _worldMap.getMaxPosition());
     std::cout << "Welcome " << _player.getName() << "! You are represented by the @ symbol." << std::endl;
@@ -44,7 +44,8 @@ void Game::spawnEncounters(const size_t count, const MapPosition& maxPosition) {
                 || _player.getPlayerPosition() == encounterPosition) {
             encounterPosition = MapPosition::getRandomPosition(maxPosition);
         }
-        Encounter newEncounter = Encounter(encounterPosition);
+        std::vector<Enemy> enemyList = {_assetDatabase.getRandomEnemy()};
+        Encounter newEncounter = Encounter(encounterPosition, enemyList);
         _encounters.push_back(newEncounter);
         _worldMap.setOverlayAt(encounterPosition, newEncounter.getEncounterChar());
     }

@@ -13,30 +13,16 @@
 #define PLAYER_NAME_MAXLENGTH 20
 #define PLAYER_NAME_DEFAULT "NAME_NOT_SET"
 
-// Represents a Player with a name.
+// Represents a Player with a name and their other properties for combat and map position.
 class Player : public CombatUnit {
 public:
-    Player() : Player(PLAYER_NAME_DEFAULT) {}
-    explicit Player(const std::string& playerName) : CombatUnit(playerName, '@', 100) {
-        setPlayerPosition({5,5});
-    }
-    /*
-     * Validates if the provided Player object has a valid name.
-     * For a name to be valid it must have a length between
-     * PLAYER_NAME_MIN_LENGTH and PLAYER_NAME_MAX_LENGTH inclusively.
-     * Then validates every character is alphanumeric.
-     * If any of those three conditions are not met (in order),
-     * the subsequent testing is halted, an error is shown via cout
-     * and the method returns false.
-     *
-     * @return Returns true if the name is a valid length and only alphanumeric.
-     */
-    bool hasValidPlayerName() const;
+    Player(const std::string& playerName, const size_t initialMaxHealth, const size_t initialMaxMana,
+                     const std::vector<UnitAttack>& attackTypes, const MapPosition& initialPlayerPosition)
+                     : CombatUnit(playerName, '@', initialMaxHealth, initialMaxMana, attackTypes),
+                       _playerPosition(initialPlayerPosition) {}
 
     void setPlayerPosition(const MapPosition playerPosition);
     MapPosition getPlayerPosition() const;
-
-    friend std::istream& operator>> (std::istream& in, Player& player);
 
     std::optional<UnitAttack> chooseAttack() override;
 
@@ -51,8 +37,21 @@ private:
  * Also requires names to be only alpha or numeric characters.
  * Validation is handled via hasValidPlayerName().
  *
- * @return Returns a player object with a valid name.
+ * @return Returns a string with a valid name.
  */
-Player createPlayer();
+std::string choosePlayerName();
+
+/*
+ * Validates if the provided string is a valid name.
+ * For a name to be valid it must have a length between
+ * PLAYER_NAME_MIN_LENGTH and PLAYER_NAME_MAX_LENGTH inclusively.
+ * Then validates every character is alphanumeric.
+ * If any of those three conditions are not met (in order),
+ * the subsequent testing is halted, an error is shown via cout
+ * and the method returns false.
+ *
+ * @return Returns true if the name is a valid length and only alphanumeric.
+ */
+bool isValidPlayerName(const std::string& playerName);
 
 #endif //RPGTEXTCPP_PLAYER_H

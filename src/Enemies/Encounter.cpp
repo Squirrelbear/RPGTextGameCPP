@@ -4,11 +4,8 @@
 
 #include "Encounter.h"
 
-Encounter::Encounter(const MapPosition &mapPosition) {
-    _mapPosition = mapPosition;
-    _enemyList.emplace_back("Test", '#', 100);
-    _turnCount = 0;
-}
+Encounter::Encounter(const MapPosition &mapPosition, const std::vector<Enemy>& enemyList)
+    : _enemyList(enemyList), _mapPosition(mapPosition), _turnCount(0) {}
 
 void Encounter::playEncounterTurn(Player &player) {
     ++_turnCount;

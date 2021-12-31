@@ -14,9 +14,9 @@
 
 class CombatUnit {
 public:
-    CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth);
+    CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth,
+               const size_t initialMaxMana, const std::vector<UnitAttack>& attackTypes);
     std::string getName() const;
-    void setName(const std::string& unitName);
     UnitHealth& getUnitHealth();
     UnitMana& getUnitMana();
     std::optional<UnitAttack> getUnitAttack(const size_t attackID) const;

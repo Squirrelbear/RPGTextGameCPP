@@ -7,10 +7,10 @@ int main() {
     srand(time(nullptr));
 
     std::string playAgainInput;
-    Player player = createPlayer();
+    std::string playerName = choosePlayerName();
 
     do {
-        Game game("TODO", player);
+        Game game("TODO", playerName);
         game.gameLoop();
 
         std::cout << "Play Again (Y/N): ";

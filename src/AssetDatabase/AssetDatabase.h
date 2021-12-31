@@ -10,6 +10,7 @@
 #include "Prefab.h"
 #include "../Enemies/UnitAttack.h"
 #include "../Enemies/Enemy.h"
+#include "../Player/Player.h"
 
 class AssetDatabase {
 public:
@@ -18,13 +19,16 @@ public:
     std::optional<UnitAttack> getUnitAttackByID(const int id);
     std::vector<UnitAttack> getAllUnitAttacksByID(const std::vector<int> attackPrefabIDs);
     Enemy getRandomEnemy();
-    PlayerPrefab getRandomPlayerPrefab();
+    Player getRandomPlayerPrefab(const std::string& playerName, const MapPosition& initialPlayerPosition);
 
 private:
-    std::map<int, EnemyPrefab> _enemyPrefabs;
+    std::vector<EnemyPrefab> _enemyPrefabs;
+    std::multimap<std::string, std::string> _enemyTypeToNameOptionsMap;
     std::map<int, AttackTypePrefab> _attackTypePrefabs;
     std::map<int, UnitAttack> _generatedAttackTypes;
-    std::map<int, PlayerPrefab> _playerPrefabs;
+    std::vector<PlayerPrefab> _playerPrefabs;
+
+    std::optional<std::string> getNameForEnemyType(const std::string& enemyType);
 };
 
 

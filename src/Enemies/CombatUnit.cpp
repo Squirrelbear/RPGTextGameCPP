@@ -5,19 +5,11 @@
 #include <iostream>
 #include "CombatUnit.h"
 
-CombatUnit::CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth)
-    : _unitHealth(initialMaxHealth), _unitMana(100)
+CombatUnit::CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth,
+                       const size_t initialMaxMana, const std::vector<UnitAttack>& attackTypes)
+    : _unitName(unitName), _mapOverlayChar(mapOverlayChar), _unitHealth(initialMaxHealth), _unitMana(initialMaxMana),
+        _attackTypes(attackTypes)
 {
-    setName(unitName);
-    _mapOverlayChar = mapOverlayChar;
-    // TODO
-    _attackTypes.emplace_back("Example Fireball", 5, 8, 30, 1.5, 5);
-    _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 50));
-    _attackTypes.emplace_back(UnitAttack("Example Fireball", 10, 20, 30, 1.5, 20));
-}
-
-void CombatUnit::setName(const std::string& unitName) {
-    this->_unitName = unitName;
 }
 
 std::string CombatUnit::getName() const {

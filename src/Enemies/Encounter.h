@@ -11,7 +11,7 @@
 
 class Encounter {
 public:
-    explicit Encounter(const MapPosition& mapPosition);
+    Encounter(const MapPosition& mapPosition, const std::vector<Enemy>& enemyList);
     void playEncounterTurn(Player& player);
     bool isWon() const;
     char getEncounterChar() const;

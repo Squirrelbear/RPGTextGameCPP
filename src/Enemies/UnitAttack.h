@@ -9,6 +9,8 @@
 
 class UnitAttack {
 public:
+    // Empty constructor required for map to use []
+    UnitAttack() {}
     UnitAttack(const std::string& attackName, const int& damageMin, const int& damageMax,
                const float& criticalChance, const float& criticalDamageMultiplier, const size_t& manaCost);
     size_t getManaCost() const;
