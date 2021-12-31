@@ -1,0 +1,5 @@
+PLAYER 100 100 0
+ENEMYNAME Orc Thrall
+ENEMY Orc O 100 100 0
+ATTACK 0 5 10 0.3 1.5 5 Basic Attack
+ATTACK 1 5 10 0.3 1.5 5 Basic Attack
