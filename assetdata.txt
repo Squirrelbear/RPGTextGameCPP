@@ -1,5 +1,27 @@
-PLAYER 100 100 0
+PLAYER 100 100 0 1 2 3 4
 ENEMYNAME Orc Thrall
-ENEMY Orc O 100 100 0
-ATTACK 0 5 10 0.3 1.5 5 Basic Attack
-ATTACK 1 5 10 0.3 1.5 5 Basic Attack
+ENEMYNAME Orc Draka
+ENEMYNAME Orc Garrosh
+ENEMYNAME Troll Zul'jin
+ENEMYNAME Troll Jin'zakk
+ENEMYNAME Troll Vol'jin
+ENEMYNAME Wolf Shadow
+ENEMYNAME Wolf Goremaw
+ENEMYNAME Wolf Ironjaw
+ENEMY Orc O 100 100 5 6 7
+ENEMY Troll T 100 100 8 9 10
+ENEMY Wolf W 100 100 11 12 13
+ATTACK 0 5 10 30 1.5 5 Magic Missile
+ATTACK 1 10 20 40 1.8 10 Lightning Bolt
+ATTACK 2 5 30 25 2.5 15 Fireball
+ATTACK 3 10 10 10 1.2 8 Blinding Flash
+ATTACK 4 0 40 20 1.5 20 Tsunami
+ATTACK 5 3 5 10 2 5 Swing
+ATTACK 6 3 5 10 2 5 Thwack
+ATTACK 7 3 5 10 2 5 Roar
+ATTACK 8 3 5 10 2 5 Spear Throw
+ATTACK 9 3 5 10 2 5 Voodoo
+ATTACK 10 3 5 10 2 5 Stealthy Slash
+ATTACK 11 3 5 10 2 5 Bite
+ATTACK 12 3 5 10 2 5 Vicious Bit
+ATTACK 13 3 5 10 2 5 Howl
