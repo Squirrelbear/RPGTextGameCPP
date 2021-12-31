@@ -12,6 +12,8 @@
 #define PLAYER_NAME_MINLENGTH 3
 #define PLAYER_NAME_MAXLENGTH 20
 #define PLAYER_NAME_DEFAULT "NAME_NOT_SET"
+#define PLAYER_HEAL_HP_MULTIPLIER 0.3
+#define PLAYER_MANA_RESTORE_MULTIPLIER 0.8
 
 // Represents a Player with a name and their other properties for combat and map position.
 class Player : public CombatUnit {
@@ -23,6 +25,8 @@ public:
 
     void setPlayerPosition(const MapPosition playerPosition);
     MapPosition getPlayerPosition() const;
+
+    void recoverStats();
 
     std::optional<UnitAttack> chooseAttack() override;
 

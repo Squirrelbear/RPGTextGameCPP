@@ -43,6 +43,26 @@ void Player::setPlayerPosition(const MapPosition playerPosition) {
     _playerPosition = playerPosition;
 }
 
+void Player::recoverStats() {
+    if(getUnitHealth().getStatValue() == getUnitHealth().getStatMax()) {
+        std::cout << "Heal was cast, but your health was already full." << std::endl;
+    } else {
+        int actualHealingDone = getUnitHealth().increaseStatBy(
+                (int)(getUnitHealth().getStatMax() * PLAYER_HEAL_HP_MULTIPLIER));
+        std::cout << "You have been healed for " << actualHealingDone << " bringing your health to "
+                  << getUnitHealth() << "." << std::endl;
+    }
+
+    if(getUnitMana().getStatValue() == getUnitMana().getStatMax()) {
+        std::cout << "Restore Mana was cast, but your mana was already full." << std::endl;
+    } else {
+        int actualRestoreDone = getUnitMana().increaseStatBy(
+                (int)(getUnitMana().getStatMax() * PLAYER_MANA_RESTORE_MULTIPLIER));
+        std::cout << "You have been restored for " << actualRestoreDone << " bringing your mana to "
+                  << getUnitMana() << "." << std::endl;
+    }
+}
+
 std::string choosePlayerName() {
     std::string playerName;
     do {

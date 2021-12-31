@@ -17,12 +17,13 @@ void Game::gameLoop() {
         navigateMap();
         int encounterID = getEncounterAt(_player.getPlayerPosition());
         if(encounterID == -1) {
-            std::cout << "ERROR!!! This should never happen..." << std::endl;
+            std::cerr << "ERROR!!! This should never happen..." << std::endl;
             continue;
         }
         processEncounter(_encounters.at(encounterID));
-        if(!_player.getUnitHealth().isDead()) {
+        if(_encounters.at(encounterID).isWon()) {
             _encounters.erase(_encounters.begin()+encounterID);
+            _player.recoverStats();
         }
     } while(!allEncountersCleared() && !_player.getUnitHealth().isDead() && _player.hasUsableAbility());
 
