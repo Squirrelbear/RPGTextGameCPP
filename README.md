@@ -43,3 +43,27 @@ The assetDatabaseFile passed to the constructor must have each line of the file 
  ### MAP [map file name]
  * File name can be any valid file name in the application directory containing map data.
  * Example: MAP map.txt
+
+## Map Files
+
+World map data is defined in a file containing only the world map data. The file format is as follows.
+* First line (both defined as integers): [map height] [map width]
+* Each subsequent line should be space separated characters with a separate line for each height.
+* Each line should contain width number of characters.
+* Example:
+    '''15 15
+    # # # # # # # # # # # # # # #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # # # # # # # # # # # # # # #'''
