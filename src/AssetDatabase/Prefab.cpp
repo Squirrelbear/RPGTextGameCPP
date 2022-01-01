@@ -4,14 +4,6 @@
 
 #include "Prefab.h"
 
-PrefabType Prefab::getPrefabType() const {
-    return _prefabType;
-}
-
-int Prefab::getPrefabID() const {
-    return _prefabID;
-}
-
 std::ostream &operator<<(std::ostream &out, const AttackTypePrefab &attackTypePrefab) {
     out << attackTypePrefab.damageMin << " "
         << attackTypePrefab.damageMax << " " << attackTypePrefab.criticalChance << " "

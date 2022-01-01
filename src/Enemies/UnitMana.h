@@ -6,7 +6,6 @@
 #define RPGTEXTCPP_UNITMANA_H
 
 #include <iostream>
-#include "UnitAttack.h"
 #include "UnitStat.h"
 
 class UnitMana : public UnitStat {

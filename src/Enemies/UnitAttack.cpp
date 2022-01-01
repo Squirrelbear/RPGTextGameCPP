@@ -25,7 +25,7 @@ bool UnitAttack::isCriticalDamage() const {
 }
 
 int UnitAttack::getCriticalModifiedDamage(const int &baseDamage) const {
-    return (int)(baseDamage * _criticalDamageMultiplier);
+    return static_cast<int>(baseDamage * _criticalDamageMultiplier);
 }
 
 std::string UnitAttack::getName() const {

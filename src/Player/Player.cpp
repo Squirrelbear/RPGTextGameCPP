@@ -87,8 +87,8 @@ bool isValidPlayerName(const std::string &playerName) {
         return false;
     }
 
-    for(int i = 0; i < playerName.length(); i++) {
-        if(!isalnum(playerName.at(i))) {
+    for(char i : playerName) {
+        if(!isalnum(i)) {
             std::cout << "Your name contains invalid characters. Only a-z A-Z and 0-9 are allowed." << std::endl;
             return false;
         }

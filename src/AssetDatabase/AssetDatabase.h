@@ -14,10 +14,10 @@
 
 class AssetDatabase {
 public:
-    AssetDatabase(const std::string& assetDatabaseFile);
+    explicit AssetDatabase(const std::string& assetDatabaseFile);
 
     std::optional<UnitAttack> getUnitAttackByID(const int id);
-    std::vector<UnitAttack> getAllUnitAttacksByID(const std::vector<int> attackPrefabIDs);
+    std::vector<UnitAttack> getAllUnitAttacksByID(const std::vector<int>& attackPrefabIDs);
     Enemy getRandomEnemy();
     Player getRandomPlayerPrefab(const std::string& playerName, const MapPosition& initialPlayerPosition);
     std::string getRandomMapFileName() const;
@@ -43,8 +43,8 @@ private:
 
     template<class T>
     bool readExpectedData(std::stringstream& lineStream, T& output, const std::string& expectedType);
-    bool readLine(std::stringstream& lineStream, std::string& output, const std::string& expectedType);
-    bool readAllInts(std::stringstream& lineStream, std::vector<int>& output, const std::string& expectedType, const bool requireOneMin);
+    static bool readLine(std::stringstream& lineStream, std::string& output, const std::string& expectedType);
+    static bool readAllInts(std::stringstream& lineStream, std::vector<int>& output, const std::string& expectedType, const bool requireOneMin);
 
 };
 
