@@ -29,7 +29,12 @@ struct MapPosition {
         return !(lhs == rhs);
     }
 
-    static MapPosition getDirectionOffsetFromString(const std::string direction) {
+    /*
+     * Expects a string in lower case matching any of "up', "down", "left" or "right".
+     * Returns a MapPosition object matching the associated direction unit vector.
+     * If no match was found {0,0} is returned.
+     */
+    static MapPosition getDirectionOffsetFromString(const std::string& direction) {
         if(direction == "up") return MOVE_OFFSET_UP;
         else if(direction == "down") return MOVE_OFFSET_DOWN;
         else if(direction == "left") return MOVE_OFFSET_LEFT;
@@ -37,6 +42,7 @@ struct MapPosition {
         else return {0,0};
     }
 
+    // Returns a random position from 0 to maxPosition for each axis.
     static MapPosition getRandomPosition(const MapPosition& maxPosition) {
         return {rand() % maxPosition.x, rand() % maxPosition.y };
     }
