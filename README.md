@@ -50,22 +50,4 @@ World map data is defined in a file containing only the world map data. The file
 * First line (both defined as integers): [map height] [map width]
 * Each subsequent line should be space separated characters with a separate line for each height.
 * Each line should contain width number of characters.
-* Example:
-    '''text
-	15 15
-    # # # # # # # # # # # # # # #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # . . . . . . . . . . . . . #
-    # # # # # # # # # # # # # # #
-	'''
+* Example see: (Map File Example)[https://github.com/Squirrelbear/RPGTextGameCPP/blob/main/appdata/map.txt]
