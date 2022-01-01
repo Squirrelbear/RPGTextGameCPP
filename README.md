@@ -14,24 +14,28 @@ The assetDatabaseFile passed to the constructor must have each line of the file 
  Each definition starts with a prefab type and then a specific ordered list of attributes required for each.
  The following identifies the format for each of these.
 
- ### PLAYER [initial max health] [initial max mana] [attack ids (1+)]
+ ### PLAYER
+ * Format: PLAYER [initial max health] [initial max mana] [attack ids (1+)]
  * Initial max health and initial max mana should be positive integers.
  * Attack ids should match the attack ids for attack type prefabs.
  * Example: PLAYER 100 100 0 1 2 3 4
 
- ### ENEMYNAME [enemy type] [name]
+ ### ENEMYNAME
+ * Format: ENEMYNAME [enemy type] [name]
  * Enemy type must appear as a single word with no spaces.
  * Name can have any amount of spacing as everything after the enemy type is considered the name.
  * Example: ENEMYNAME Orc Thrall
 
- ### ENEMY [enemy type] [map overlay character] [initial max health] [initial max mana] [attack ids (1+)]
+ ### ENEMY
+ * Format: ENEMY [enemy type] [map overlay character] [initial max health] [initial max mana] [attack ids (1+)]
  * Enemy type must appear as a single word with no spaces.
  * Map overlay character must be a single character.
  * Initial max health and initial max mana should be positive integers.
  * Attack ids should match the attack ids for attack type prefabs.
  * Example: ENEMY Orc O 100 100 5 6 7
 
- ### ATTACK [attack id] [damage min] [damage max] [critical chance] [critical damage multiplier] [mana cost] [attack name]
+ ### ATTACK
+ * Format: ATTACK [attack id] [damage min] [damage max] [critical chance] [critical damage multiplier] [mana cost] [attack name]
  * Attack id must be a unique id for each attack.
  * Damage min and damage max must be integer values where min is less than or equal to max.
  * Critical chance can be a float and should be written as 60.5 for 60.5%
@@ -40,7 +44,8 @@ The assetDatabaseFile passed to the constructor must have each line of the file 
  * Attack name can have any length with as many spaces as desired everything after mana cost is considered the name.
  * Example: ATTACK 0 5 10 30 1.5 5 Magic Missile
 
- ### MAP [map file name]
+ ### MAP
+ * Format: MAP [map file name]
  * File name can be any valid file name in the application directory containing map data.
  * Example: MAP map.txt
 
@@ -50,4 +55,4 @@ World map data is defined in a file containing only the world map data. The file
 * First line (both defined as integers): [map height] [map width]
 * Each subsequent line should be space separated characters with a separate line for each height.
 * Each line should contain width number of characters.
-* Example see: (Map File Example)[https://github.com/Squirrelbear/RPGTextGameCPP/blob/main/appdata/map.txt]
+* Example see: [Map File Example](https://github.com/Squirrelbear/RPGTextGameCPP/blob/main/appdata/map.txt)
