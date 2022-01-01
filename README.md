@@ -51,7 +51,8 @@ World map data is defined in a file containing only the world map data. The file
 * Each subsequent line should be space separated characters with a separate line for each height.
 * Each line should contain width number of characters.
 * Example:
-    '''15 15
+    '''text
+	15 15
     # # # # # # # # # # # # # # #
     # . . . . . . . . . . . . . #
     # . . . . . . . . . . . . . #
@@ -66,4 +67,5 @@ World map data is defined in a file containing only the world map data. The file
     # . . . . . . . . . . . . . #
     # . . . . . . . . . . . . . #
     # . . . . . . . . . . . . . #
-    # # # # # # # # # # # # # # #'''
+    # # # # # # # # # # # # # # #
+	'''
