@@ -32,6 +32,7 @@ bool Encounter::isWon() const {
 
 char Encounter::getEncounterChar() const {
     if(isWon()) {
+        // should never happen, but just in case the % is returned to satisfy all return paths.
         return '%';
     }
     return _enemyList.at(0).getMapOverlayChar();

@@ -7,14 +7,18 @@
 
 #include <iostream>
 
+// Defines a generic UnitStat that is based on having a maximum with an increasing or decreasing current value.
 class UnitStat {
 public:
+    // Defines a UnitStat setting the current and maximum values to the statMax.
     explicit UnitStat(const size_t statMax);
     /*
      * Sets the maximum stat AND current stat to statMax if changeCurrent is true.
      */
     void setStatMax(const size_t statMax, const bool changeCurrent = true);
+    // Gets the maximum value possible for this stat.
     int getStatMax() const;
+    // Gets the current value of this stat.
     int getStatValue() const;
     /*
      * Decreases stat value by up to amount. Will not reduce below 0.
@@ -27,10 +31,16 @@ public:
      */
     size_t increaseStatBy(const size_t amount);
 
+    /*
+     * Outputs in the form:
+     * {value} of {max}
+     */
     friend std::ostream& operator<< (std::ostream& out, const UnitStat& unitStat);
 
 private:
+    // The current stat value.
     int _statValue;
+    // The maximum stat value.
     int _statMax;
 };
 

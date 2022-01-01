@@ -18,19 +18,34 @@
 // Represents a Player with a name and their other properties for combat and map position.
 class Player : public CombatUnit {
 public:
+    /*
+     * Initialises an Player with the required properties.
+     *
+     * @param playerName The name of this player.
+     * @param initialMaxHealth The initial health maximum for this player.
+     * @param initialMaxMana The initial mana maximum for this player.
+     * @param attackTypes One or more attacks that this player can use in combat.
+     * @param initialPlayerPosition The initial position where the player is placed on the map.
+     */
     Player(const std::string& playerName, const size_t initialMaxHealth, const size_t initialMaxMana,
                      const std::vector<UnitAttack>& attackTypes, const MapPosition& initialPlayerPosition)
                      : CombatUnit(playerName, '@', initialMaxHealth, initialMaxMana, attackTypes),
                        _playerPosition(initialPlayerPosition) {}
 
+    // Sets the player position on the map to the specified position.
     void setPlayerPosition(const MapPosition playerPosition);
+    // Gets the current player position on the map.
     MapPosition getPlayerPosition() const;
 
+    // Recovers up to PLAYER_HEAL_HP_MULTIPLIER of max hp and PLAYER_MANA_RESTORE_MULTIPLIER of max mana.
     void recoverStats();
 
+    /* Prompts the user to select from usable attacks and returns the selection.
+       If there are no usable attacks it is skipped with std::nullopt, or if one attack that attack is forced. */
     std::optional<UnitAttack> chooseAttack() override;
 
 private:
+    // The position of the player on the map.
     MapPosition _playerPosition;
 };
 

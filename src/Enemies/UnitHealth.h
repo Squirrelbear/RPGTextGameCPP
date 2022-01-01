@@ -8,6 +8,7 @@
 #include <iostream>
 #include "UnitStat.h"
 
+// Defines properties unique to health for a type of UnitStat.
 class UnitHealth : public UnitStat {
 public:
     explicit UnitHealth(const size_t healthMax) : UnitStat(healthMax) {}

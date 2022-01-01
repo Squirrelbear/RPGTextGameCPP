@@ -22,7 +22,7 @@ class CombatUnit {
 public:
     /*
      * Initialises a combat unit with the required properties.
-     * 
+     *
      * @param unitName The name of this combat unit.
      * @param mapOverlayChar The character used to represent this combat unit on the map.
      * @param initialMaxHealth The initial health maximum for this unit.

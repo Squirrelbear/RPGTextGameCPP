@@ -10,8 +10,6 @@
 #include "MapTile.h"
 #include "MapPosition.h"
 
-//#define WORLD_MAP_SHOW_NUMBERS
-
 // Represents a map with a 2D grid of MapTile objects.
 class WorldMap {
 public:
@@ -23,12 +21,18 @@ public:
     // Removes the current map and replaces with a reload from the last loaded file.
     void reloadMap();
 
+    // Returns true if the position is within the map bounds and is walkable.
     bool canMoveToPosition(const MapPosition& mapPosition);
+    // Hides any overlay at the specified map position.
     void hideOverlayAt(const MapPosition& mapPosition);
+    // Shows the specified overlay at the specified map position.
     void setOverlayAt(const MapPosition& mapPosition, const char overlayChar);
+    // Gets the current overlay at a specified map position.
     char getOverlayAt(const MapPosition& mapPosition);
+    // Gets the maximum bounds of the map.
     MapPosition getMaxPosition() const;
 
+    // Outputs each row on an individual line for the full contents of the map.
     friend std::ostream& operator<< (std::ostream& out, const WorldMap& worldMap);
 
 private:
@@ -37,6 +41,7 @@ private:
     // The file used for loading/reloading the map
     std::string _mapFileName;
 
+    // A fallback map that has all cells walkable. Only used if map fails to load.
     void loadDefaultMap();
 };
 
