@@ -10,7 +10,33 @@
 #include "MapTile.h"
 #include "MapPosition.h"
 
-// Represents a map with a 2D grid of MapTile objects.
+/*
+ * Represents a map with a 2D grid of MapTile objects.
+ *
+ * World map data is defined in a file containing only the world map data.
+ * The file format is as follows.
+ * First line (both defined as integers): [map height] [map width]
+ * Each subsequent line should be space separated characters with a separate line for each height.
+ * Each line should contain width number of characters.
+ *
+ * Example:
+    15 15
+    # # # # # # # # # # # # # # #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # . . . . . . . . . . . . . #
+    # # # # # # # # # # # # # # #
+ */
 class WorldMap {
 public:
     // Initialises the WorldMap by loading from the specified file name.
