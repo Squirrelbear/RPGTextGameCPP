@@ -16,7 +16,7 @@ std::string CombatUnit::getName() const {
     return _unitName;
 }
 
-UnitHealth & CombatUnit::getUnitHealth() {
+UnitStat & CombatUnit::getUnitHealth() {
     return _unitHealth;
 }
 
@@ -69,7 +69,7 @@ void CombatUnit::performAttackOn(const UnitAttack &attack, CombatUnit &attackTar
     std::cout << std::endl;
 }
 
-UnitMana &CombatUnit::getUnitMana() {
+UnitStat &CombatUnit::getUnitMana() {
     return _unitMana;
 }
 

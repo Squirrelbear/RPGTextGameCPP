@@ -19,7 +19,7 @@ void Encounter::playEncounterTurn(Player &player) {
         _enemyList.erase(_enemyList.begin());
     }
     for(auto& enemy : _enemyList) {
-        if(!player.getUnitHealth().isDead()) {
+        if(!player.getUnitHealth().hasZeroStat()) {
             playCombatUnitTurn(enemy, player);
         }
     }
@@ -40,7 +40,7 @@ char Encounter::getEncounterChar() const {
 
 bool Encounter::applyAttack(UnitAttack &unitAttack, CombatUnit &attacker, CombatUnit &target) {
     attacker.performAttackOn(unitAttack, target);
-    if(target.getUnitHealth().isDead()) {
+    if(target.getUnitHealth().hasZeroStat()) {
         std::cout << attacker.getName() << " defeated " << target.getName() << "!" << std::endl;
         return true;
     }

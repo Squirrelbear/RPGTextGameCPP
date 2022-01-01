@@ -8,9 +8,8 @@
 
 #include <vector>
 #include <optional>
-#include "UnitHealth.h"
 #include "UnitAttack.h"
-#include "UnitMana.h"
+#include "UnitStat.h"
 
 /*
  * A pure virtual class intended to be inherited by specific types of combat unit.
@@ -34,9 +33,9 @@ public:
     // Gets the combat unit's name.
     std::string getName() const;
     // Gets a reference to the combat unit's health stat.
-    UnitHealth& getUnitHealth();
+    UnitStat& getUnitHealth();
     // Gets a reference to the combat unit's mana stat.
-    UnitMana& getUnitMana();
+    UnitStat& getUnitMana();
     // Returns an attack matching the specified ID or std::nullopt if out of range.
     std::optional<UnitAttack> getUnitAttack(const size_t attackID) const;
     // Gets all the usable attacks and returns std::nullopt if none are usable, or a random usable one.
@@ -69,9 +68,9 @@ private:
     // The name of this combat unit.
     std::string _unitName;
     // The health stat of this combat unit.
-    UnitHealth _unitHealth;
+    UnitStat _unitHealth;
     // The mana stat of this combat unit.
-    UnitMana _unitMana;
+    UnitStat _unitMana;
     // The list of attacks available to the combat unit.
     std::vector<UnitAttack> _attackTypes;
 

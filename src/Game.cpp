@@ -28,12 +28,12 @@ void Game::gameLoop() {
             _encounters.erase(_encounters.begin()+encounterID);
             _player.recoverStats();
         }
-    } while(!allEncountersCleared() && !_player.getUnitHealth().isDead() && _player.hasUsableAbility());
+    } while(!allEncountersCleared() && !_player.getUnitHealth().hasZeroStat() && _player.hasUsableAbility());
 
     if(allEncountersCleared()) {
         showGameWonMessage();
     } else {
-        if(!_player.getUnitHealth().isDead()) {
+        if(!_player.getUnitHealth().hasZeroStat()) {
             std::cout << "You ran out of mana and the remaining enemy force wiped you out." << std::endl;
         }
         showGameOverMessage();
@@ -75,7 +75,7 @@ void Game::navigateMap() {
 void Game::processEncounter(Encounter &encounter) {
     do {
         encounter.playEncounterTurn(_player);
-    } while(!encounter.isWon() && !_player.getUnitHealth().isDead());
+    } while(!encounter.isWon() && !_player.getUnitHealth().hasZeroStat());
 }
 
 void Game::showGameOverMessage() const {
