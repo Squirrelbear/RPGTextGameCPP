@@ -20,6 +20,10 @@ public:
     int getStatMax() const;
     // Gets the current value of this stat.
     int getStatValue() const;
+
+    // Returns true if the current stat is 0.
+    bool hasZeroStat() const;
+
     /*
      * Decreases stat value by up to amount. Will not reduce below 0.
      * Returns the amount it was reduced by.

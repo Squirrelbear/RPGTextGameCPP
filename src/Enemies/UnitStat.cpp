@@ -49,3 +49,7 @@ std::ostream &operator<<(std::ostream &out, const UnitStat &unitStat) {
 int UnitStat::getStatValue() const {
     return _statValue;
 }
+
+bool UnitStat::hasZeroStat() const {
+    return _statValue == 0;
+}
