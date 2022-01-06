@@ -11,11 +11,11 @@
 class UnitStat {
 public:
     // Defines a UnitStat setting the current and maximum values to the statMax.
-    explicit UnitStat(const size_t statMax);
+    explicit UnitStat(const unsigned int statMax);
     /*
      * Sets the maximum stat AND current stat to statMax if changeCurrent is true.
      */
-    void setStatMax(const size_t statMax, const bool changeCurrent = true);
+    void setStatMax(const unsigned int statMax, const bool changeCurrent = true);
     // Gets the maximum value possible for this stat.
     int getStatMax() const;
     // Gets the current value of this stat.
@@ -28,12 +28,12 @@ public:
      * Decreases stat value by up to amount. Will not reduce below 0.
      * Returns the amount it was reduced by.
      */
-    size_t decreaseStatBy(const size_t amount);
+    size_t decreaseStatBy(const unsigned int amount);
     /*
      * Increases mana value by up to amount. Will not increase above max mana.
      * Returns the actual restore applied, which will vary when hitting max mana.
      */
-    size_t increaseStatBy(const size_t amount);
+    size_t increaseStatBy(const unsigned int amount);
 
     /*
      * Outputs in the form:

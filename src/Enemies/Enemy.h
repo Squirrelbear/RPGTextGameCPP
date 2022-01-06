@@ -21,8 +21,8 @@ public:
      * @param initialMaxMana The initial mana maximum for this enemy.
      * @param attackTypes One or more attacks that this enemy can use in combat.
      */
-    Enemy(const std::string& enemyName, const char mapOverlayChar, const size_t initialMaxHealth,
-          const size_t initialMaxMana, const std::vector<UnitAttack>& attackTypes)
+    Enemy(const std::string& enemyName, const char mapOverlayChar, const unsigned int initialMaxHealth,
+          const unsigned int initialMaxMana, const std::vector<UnitAttack>& attackTypes)
                         : CombatUnit(enemyName, mapOverlayChar, initialMaxHealth, initialMaxMana, attackTypes) {};
 
     // Returns either a random usable attack based on current mana or std::nullopt.

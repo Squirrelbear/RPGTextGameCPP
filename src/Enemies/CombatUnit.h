@@ -28,8 +28,8 @@ public:
      * @param initialMaxMana The initial mana maximum for this unit.
      * @param attackTypes One or more attacks that this unit can use in combat.
      */
-    CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth,
-               const size_t initialMaxMana, const std::vector<UnitAttack>& attackTypes);
+    CombatUnit(const std::string& unitName, const char mapOverlayChar, const unsigned int initialMaxHealth,
+               const unsigned int initialMaxMana, const std::vector<UnitAttack>& attackTypes);
     // Gets the combat unit's name.
     std::string getName() const;
     // Gets a reference to the combat unit's health stat.
@@ -37,7 +37,7 @@ public:
     // Gets a reference to the combat unit's mana stat.
     UnitStat& getUnitMana();
     // Returns an attack matching the specified ID or std::nullopt if out of range.
-    std::optional<UnitAttack> getUnitAttack(const size_t attackID) const;
+    std::optional<UnitAttack> getUnitAttack(const unsigned int attackID) const;
     // Gets all the usable attacks and returns std::nullopt if none are usable, or a random usable one.
     std::optional<UnitAttack> getRandomUnitAttack();
     // Gets the number of attacks available to this combat unit.

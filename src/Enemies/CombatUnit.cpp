@@ -5,8 +5,8 @@
 #include <iostream>
 #include "CombatUnit.h"
 
-CombatUnit::CombatUnit(const std::string& unitName, const char mapOverlayChar, const size_t initialMaxHealth,
-                       const size_t initialMaxMana, const std::vector<UnitAttack>& attackTypes)
+CombatUnit::CombatUnit(const std::string& unitName, const char mapOverlayChar, const unsigned int initialMaxHealth,
+                       const unsigned int initialMaxMana, const std::vector<UnitAttack>& attackTypes)
     : _unitName(unitName), _mapOverlayChar(mapOverlayChar), _unitHealth(initialMaxHealth), _unitMana(initialMaxMana),
         _attackTypes(attackTypes)
 {
@@ -20,7 +20,7 @@ UnitStat & CombatUnit::getUnitHealth() {
     return _unitHealth;
 }
 
-std::optional<UnitAttack> CombatUnit::getUnitAttack(const size_t attackID) const {
+std::optional<UnitAttack> CombatUnit::getUnitAttack(const unsigned int attackID) const {
     if(attackID >= _attackTypes.size()) {
         return std::nullopt;
     }
@@ -38,7 +38,6 @@ std::optional<UnitAttack> CombatUnit::getRandomUnitAttack() {
 size_t CombatUnit::getAttackCount() const {
     return _attackTypes.size();
 }
-
 
 std::ostream& operator<< (std::ostream& out, const CombatUnit& combatUnit) {
     out << combatUnit.getName() << " has " << combatUnit._unitHealth << " HP and ";

@@ -27,7 +27,7 @@ public:
      * @param attackTypes One or more attacks that this player can use in combat.
      * @param initialPlayerPosition The initial position where the player is placed on the map.
      */
-    Player(const std::string& playerName, const size_t initialMaxHealth, const size_t initialMaxMana,
+    Player(const std::string& playerName, const unsigned int initialMaxHealth, const unsigned int initialMaxMana,
                      const std::vector<UnitAttack>& attackTypes, const MapPosition& initialPlayerPosition)
                      : CombatUnit(playerName, '@', initialMaxHealth, initialMaxMana, attackTypes),
                        _playerPosition(initialPlayerPosition) {}

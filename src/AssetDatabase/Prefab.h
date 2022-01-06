@@ -24,7 +24,7 @@ public:
     // Empty constructor required for map to use []
     AttackTypePrefab() : Prefab(PrefabType::ATTACK_TYPE) {}
     AttackTypePrefab(const int prefabID, const std::string& attackName, const int& damageMin, const int& damageMax,
-                     const float& criticalChance, const float& criticalDamageMultiplier, const size_t& manaCost)
+                     const float& criticalChance, const float& criticalDamageMultiplier, const unsigned int& manaCost)
                      : Prefab(PrefabType::ATTACK_TYPE, prefabID), attackName(attackName), damageMin(damageMin),
                        damageMax(damageMax), criticalChance(criticalChance),
                        criticalDamageMultiplier(criticalDamageMultiplier), manaCost(manaCost) {}
@@ -36,13 +36,13 @@ public:
     int damageMax;
     float criticalChance;
     float criticalDamageMultiplier;
-    size_t manaCost;
+    unsigned int manaCost;
 };
 
 class EnemyPrefab : public Prefab {
 public:
     EnemyPrefab(const int prefabID, const std::string& enemyType, const char mapOverlayChar,
-                const size_t initialMaxHealth, const size_t initialMaxMana, std::vector<int>& attackTypes)
+                const unsigned int initialMaxHealth, const unsigned int initialMaxMana, std::vector<int>& attackTypes)
                 : Prefab(PrefabType::ENEMY, prefabID), enemyType(enemyType), mapOverlayChar(mapOverlayChar),
                     initialMaxHealth(initialMaxHealth), initialMaxMana(initialMaxMana), attackTypes(attackTypes) {}
 
@@ -50,21 +50,22 @@ public:
 
     std::string enemyType;
     char mapOverlayChar;
-    size_t initialMaxHealth;
-    size_t initialMaxMana;
+    unsigned int initialMaxHealth;
+    unsigned int initialMaxMana;
     std::vector<int> attackTypes;
 };
 
 class PlayerPrefab : public Prefab {
 public:
-    PlayerPrefab(const int prefabID, const size_t initialMaxHealth, const size_t initialMaxMana, std::vector<int>& attackTypes)
+    PlayerPrefab(const int prefabID, const unsigned int initialMaxHealth, const unsigned int initialMaxMana,
+                 std::vector<int>& attackTypes)
                     : Prefab(PrefabType::PLAYER, prefabID), initialMaxHealth(initialMaxHealth),
                       initialMaxMana(initialMaxMana), attackTypes(attackTypes) {}
 
     friend std::ostream& operator<< (std::ostream& out, const PlayerPrefab& playerPrefab);
 
-    const size_t initialMaxHealth;
-    const size_t initialMaxMana;
+    const unsigned int initialMaxHealth;
+    const unsigned int initialMaxMana;
     const std::vector<int> attackTypes;
 };
 
