@@ -8,6 +8,8 @@ The game has the player start by choosing their name. Then the game alternates b
 
 A CMake file is provided to compile the project and will copy the contents of the appdata folder into the build directory when it is loaded. These assets are required to define configuration of the player's stats, enemy stats, attacks, enemy names, and any map files that are associated with the game.
 
+* ([Youtube Demo](https://youtu.be/g24PpN2EcsE))
+
 ## Configuration File (assetdata.txt)
 
 The assetDatabaseFile passed to the constructor must have each line of the file as a separate definition.
